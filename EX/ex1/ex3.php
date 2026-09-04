@@ -1,12 +1,12 @@
 <?php
 function stringToIntegerList(string $input): array
 {
-    if ($input == null) {
+    if ($input == null || $input == "" || $input == "[]") {
         return [];
     }
 
     $array_as_int = [];
-    foreach (explode(",",trim($input, "[]")) as $str) {
+    foreach (explode(",",trim($input, " []")) as $str) {
         array_push($array_as_int,intval($str));
     }
     /*  1. trim() eemaldab sõnest sümbolid "[" ja "]".
