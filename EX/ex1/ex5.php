@@ -3,7 +3,7 @@ function getAverage(string $filename) : float
 {
     $sum = 0;
     $count = 0;
-    $avg = 0.0;
+
     
     
     try {
