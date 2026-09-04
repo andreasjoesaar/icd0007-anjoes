@@ -1,7 +1,7 @@
 <?php
 function stringToIntegerList(string $input): array
 {
-    if ($input == null || trim($input) == "[]") {
+    if ($input == null || trim($input) == "[]" || ctype_space($input) == true) {
         return [];
     }
 
