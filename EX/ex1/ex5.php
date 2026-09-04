@@ -15,11 +15,11 @@ function getAverage(string $filename) : float
     foreach ($rows as $row) {
         if (is_int($row)) {
             $sum += $row;
-            $count ++;
-        } else if (is_scalar($row)) {
+            $count += 1;
+        } else if (is_string($row)) {
             try {
                 $sum += intval(trim($row));
-                $count ++;
+                $count += 1;
             } catch (Exception $e) {
                 echo "Unable to get value from string: " . $e->getMessage() . PHP_EOL;
                 continue;
