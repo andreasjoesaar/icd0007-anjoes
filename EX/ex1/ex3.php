@@ -1,6 +1,10 @@
 <?php
 function stringToIntegerList(string $input): array
 {
+    if ($input == null) {
+        return [];
+    }
+
     $array_as_int = [];
     foreach (explode(",",trim($input, "[]")) as $str) {
         array_push($array_as_int,intval($str));
