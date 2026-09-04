@@ -29,7 +29,7 @@ function getAverage(string $filename) : float
         }
     }
 
-    if ($count > 0) $avg = number_format(($sum / $count), 2);
+    if ($count > 0) $avg = ($sum / $count);
     var_dump($avg);
     return $avg;
 }
