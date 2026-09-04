@@ -1,12 +1,11 @@
 <?php
-function getAverage(string $filename) : float
-{
+function getAverage(string $filename): float {
     $sum = 0.0;
     $count = 0.0;
     $avg = 0.0;
 
     try {
-        $rows = file("$filename");
+        $rows = file($filename);
     } catch (Exception $e) {
         echo "Unable to open file" . $e->getMessage() . PHP_EOL;
         return 0.0;
@@ -15,13 +14,11 @@ function getAverage(string $filename) : float
     foreach ($rows as $row) {
         if ($row === null) {
             continue;
-        } 
-        else if (gettype($row) == "integer") {
+        } else if (gettype($row) == "integer") {
             $sum += $row;
             $count += 1;
             var_dump($row);
-        } 
-        else if (gettype($row) == "string") {
+        } else if (gettype($row) == "string") {
             try {
                 $sum += intval(trim($row));
                 $count += 1;
@@ -32,10 +29,13 @@ function getAverage(string $filename) : float
                 continue;
             }
         }
+    }
+
     var_dump($sum, $count);
+
     if ($count > 0) {
         $avg = floatval($sum / $count);
     };
-
+    
     return $avg;
 }
