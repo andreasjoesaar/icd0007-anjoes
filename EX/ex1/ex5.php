@@ -13,10 +13,10 @@ function getAverage(string $filename) : float
     }
 
     foreach ($rows as $row) {
-        if (is_int($row)) {
+        if (gettype($row) == "integer") {
             $sum += $row;
             $count += 1;
-        } else if (is_string($row)) {
+        } else if (gettype($row) == "string") {
             try {
                 $sum += intval(trim($row));
                 $count += 1;
@@ -24,7 +24,7 @@ function getAverage(string $filename) : float
                 echo "Unable to get value from string: " . $e->getMessage() . PHP_EOL;
                 continue;
             }
-        } else if ($row == null) {
+        } else if ($row === null) {
             continue;
         }
     }
