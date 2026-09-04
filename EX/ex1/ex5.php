@@ -3,6 +3,7 @@ function getAverage(string $filename) : float
 {
     $sum = 0;
     $count = 0;
+    $avg = 0;
 
     
     
@@ -33,6 +34,9 @@ function getAverage(string $filename) : float
         var_dump($sum, $count);
     }
 
-    if ($count > 0) $avg = floatval($sum / $count);
+    if ($count > 0) {
+        $avg = floatval($sum / $count);
+    };
+    
     return $avg;
 }
