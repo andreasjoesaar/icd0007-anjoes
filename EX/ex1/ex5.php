@@ -4,13 +4,14 @@ function getAverage(string $filename) : float
     $sum = 0;
     $count = 0;
     $avg = 0.0;
-
+    $rows = file("data/$filename");
+    /*
     try {
-        $rows = file("data/$filename");
+        
     } catch (Exception $e) {
         echo "Unable to open file" . $e->getMessage() . PHP_EOL;
         return 0.0;
-    }
+    }*/
 
     foreach ($rows as $row) {
         if (gettype($row) == "integer") {
