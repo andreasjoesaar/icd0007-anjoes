@@ -3,9 +3,18 @@
 declare(strict_types=1);
 
 $directory = $argv[1] ?? null;
+if ($directory === null) {
+    fwrite(STDERR, "Usage: php directory-summary.php <path>\n");
+    exit(1);
+}
 
 while (true) {
     
+    if (!is_dir($directory)) {
+        fwrite(STDERR, "Error. '{$directory} is not a valid directory.\n");
+        exit(1);
+    }
+
     try {
         $dir_array = scandir($directory);
     } catch (Exception $e) {
@@ -30,21 +39,18 @@ while (true) {
             }
         };
     }
-    
-    echo "Files: " . count($files) . PHP_EOL;
-    echo "Folders: " . count($folders) . PHP_EOL;
-    writeSummary(count($files), count($folders));
-    break;
-    
-};
+    $num_files = count($files);
+    $num_folders = count($folders);
+    echo "Files: " . $num_files . PHP_EOL;
+    echo "Folders: " . $num_folders . PHP_EOL;
 
-function writeSummary(int $num_files, int $num_folders) {
     if (!file_exists(__DIR__ . '/' . 'summary.txt')) {
         file_put_contents(__DIR__ . '/' . 'summary.txt', "Files: " . $num_files . PHP_EOL . "Folders: " . $num_folders . PHP_EOL);
     } else {
         echo 'Overwriting existing file... ';
         file_put_contents(__DIR__ . '/' . 'summary.txt', "Files: " . $num_files . PHP_EOL . "Folders: " . $num_folders . PHP_EOL);
     }
-}
-
+    break;
+    
+};
 
