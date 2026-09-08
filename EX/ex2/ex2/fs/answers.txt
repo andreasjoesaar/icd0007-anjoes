@@ -1,8 +1,8 @@
 # Vastused
 
-1. root.txt
+1. ./root.txt
 2. /north/east
-3. note.txt
+3. ./note.txt
 4. /deep
-5. value.txt
+5. ./value.txt
 6. ../../../
