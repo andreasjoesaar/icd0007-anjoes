@@ -5,9 +5,9 @@ declare(strict_types=1);
 $directory = $argv[1] ?? null;
 
 while (true) {
-    $path = (string)readline('Enter path:'. PHP_EOL);
+    
     try {
-        $dir_array = scandir($path);
+        $dir_array = scandir($directory);
     } catch (Exception $e) {
         echo "Incorrect path. Try again: " . $e->getMessage() . PHP_EOL;
         continue;
@@ -17,7 +17,7 @@ while (true) {
     $folders = [];
     var_dump($dir_array);
     foreach($dir_array as $file) {
-        $file_rel_path = $path . "/" . $file;
+        $file_rel_path = $directory . "/" . $file;
         var_dump($file_rel_path);
         if ($file && $file !== "." && $file !== ".." && $file !== ".DS_Store") {
             if (is_dir($file_rel_path)) {
@@ -31,8 +31,8 @@ while (true) {
         };
     }
     
-    print "Files: " . count($files) . PHP_EOL;
-    print "Folders: " . count($folders) . PHP_EOL;
+    echo "Files: " . count($files) . PHP_EOL;
+    echo "Folders: " . count($folders) . PHP_EOL;
     writeSummary(count($files), count($folders));
     break;
     
