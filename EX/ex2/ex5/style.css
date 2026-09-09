@@ -14,7 +14,13 @@ h1 {
     justify-content: center;
     align-items: center;
     gap: 20px;
+    background: aquamarine;
 
+}
+
+.menu {
+    display: flex;
+    gap: 20px
 }
 
 .cards {
@@ -34,9 +40,14 @@ h1 {
 
 }
 
+
+.main {
+    display: flex;
+}
 .layout {
     border: 2px solid orange;
     padding: 5px;
+    display: flex;
 }
 
 .sidebar {
@@ -44,6 +55,7 @@ h1 {
     margin-left: 30px;
     padding-inline: 10px;
     border: 2px solid black;
+    background: orangered;
 }
 
 .footer {
