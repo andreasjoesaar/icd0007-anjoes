@@ -11,7 +11,7 @@ if ($directory === null) {
 while (true) {
     
     if (!is_dir($directory)) {
-        fwrite(STDERR, "Error. '{$directory} is not a valid directory.\n");
+        fwrite(STDERR, "Directory not found.\n");
         exit(1);
     }
 

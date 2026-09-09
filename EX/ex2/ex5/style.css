@@ -1,1 +1,57 @@
 /* Kirjuta siia kujundus */
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+h1 {
+    font-style: oblique;
+    font-weight: 700;
+    margin-left: 20px;
+    padding-bottom: 70px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+}
+
+.cards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 15px;
+
+}
+
+.layout {
+    border: 2px solid orange;
+    padding: 5px;
+}
+
+.sidebar {
+    display:inline-block;
+    margin-left: 30px;
+    padding-inline: 10px;
+    border: 2px solid black;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+    padding: 15px;
+    background: blue;
+    color: aliceblue;
+    
+}
