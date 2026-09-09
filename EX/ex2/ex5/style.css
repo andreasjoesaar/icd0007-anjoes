@@ -41,9 +41,7 @@ h1 {
 }
 
 
-.main {
-    display: flex;
-}
+
 .layout {
     border: 2px solid orange;
     padding: 5px;

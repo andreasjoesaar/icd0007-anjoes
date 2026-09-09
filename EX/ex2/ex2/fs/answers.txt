@@ -1,8 +1,8 @@
 # Vastused
 
-1. ./root.txt
+1. Kui oled siin, siis oled õigel teel.
 2. /north/east
-3. ./note.txt
+3. Liigu sügavamale, et leida järgmine fail.
 4. /deep
-5. ./value.txt
+5. 42
 6. ../../../
