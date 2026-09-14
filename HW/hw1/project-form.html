@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="et">
+<head id = "page-header">
+    <meta charset="UTF-8">
+    <title>HW 1 | Project Form</title>
+
+</head>
+
+<nav>
+    <a href="." id="dashboard-link">Dashboard</a>
+    <a href="project-list.html" id="project-list-link">Project list</a>
+    <a href="project-form.html" id="project-form-link">Project form</a>
+    <a href="task-list.html" id="task-list-link">Task list</a>
+    <a href="task-form.html" id="task-form-link">Task form</a>
+</nav>
+
+<body>
+    <h1> Project form</h1>
+    <form id="project-form">
+        <div>
+            Title
+            <input type="text" id="project-name">
+        </div>
+        </br>
+
+        <div>
+            Description
+            <textarea id="project-description"></textarea>
+        </div>
+        </br>
+
+        <div>
+            Status
+            <select id="project-status">
+                <option value="not-late">Not Late</option>
+                <option value="late">Late</option>
+            </select>
+        </div>
+        </br>
+
+        <div>
+            Deadline
+            <input type="date" id="project-deadline">
+        </div>
+        </br>
+
+        <div>
+            Mark as important
+            <input type="radio" id="project-featured">
+        </div>
+        </br>
+        <div>
+            <button type="submit" id="submit-button">Submit</button>
+        </div>
+        </br>
+    </form>
+</body>
+
+<footer id="page-footer">
+    <p> See on jalus</p>
+</footer>
