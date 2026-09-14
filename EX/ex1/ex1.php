@@ -9,4 +9,5 @@ foreach ($numbers as $number) {
     }
 }
 
+
 echo "Found it $count times";
