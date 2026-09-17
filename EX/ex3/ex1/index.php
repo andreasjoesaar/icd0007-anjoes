@@ -19,12 +19,45 @@ $rows = getServerInfoRows($_SERVER);
         <th>Väli</th>
         <th>Väärtus</th>
     </tr>
-    <?php foreach($rows as $field => $data): ?> 
+    <tr>
+            <td>Päringumeetod</td>
+            <td><?php echo $rows['Päringumeetod']; ?></td>
+    </tr>
+    <tr>
+            <td>Host</td>
+            <td><?php echo $rows['Host']; ?></td>
+    </tr>
+    <tr>
+            <td>Serveri port</td>
+            <td><?php echo $rows['Serveri port']; ?></td>
+    </tr>
+    <tr>
+            <td>Päringu URL</td>
+            <td><?php echo $rows['Päringu URL']; ?></td>
+    </tr>
+    <tr>
+            <td>Serveri port</td>
+            <td><?php echo $rows['Skripti asukoht']; ?></td>
+    </tr>
+    <tr>
+            <td>Serveri tarkvara</td>
+            <td><?php echo $rows['Serveri tarkvara']; ?></td>
+    </tr>
+    <tr>
+            <td>Dokumendijuure asukoht</td>
+            <td><?php echo $rows['Dokumendijuure asukoht']; ?></td>
+    </tr>
+
+
+    <!--
+    
+    <?php //foreach($rows as $field => $data): ?> 
         <tr>
-            <td><?php echo $field; ?></td>
-            <td><?php echo $data; ?></td>
+            <td><?php //echo $field; ?></td>
+            <td><?php //echo $data; ?></td>
         </tr>
-     <?php endforeach; ?>
+     <?php //endforeach; ?>
+    -->
     
 </table>
 </body>
