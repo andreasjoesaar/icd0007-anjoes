@@ -1,5 +1,5 @@
 <?php
 
 include('header.php');
-include('nav.php');
-include('footer.php');
+require_once('nav.php');
+require_once('footer.php');

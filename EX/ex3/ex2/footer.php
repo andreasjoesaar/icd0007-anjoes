@@ -1,4 +1,4 @@
-<html>
+
 <footer>
     <p>
         Siin on footer
