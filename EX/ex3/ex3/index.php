@@ -1,7 +1,7 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
+    $name = $_POST['name'] ?? '';
     header('Location: success.php?name=' . urlencode($name));
     exit();
 }
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <form method="post" action="http://localhost:8000/">
+    <form method="post" action="/submit.php">
         <input name="name">
         <input type="submit" name="submit" />
     </form>
