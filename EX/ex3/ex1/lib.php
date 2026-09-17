@@ -2,15 +2,40 @@
 declare(strict_types=1);
 
 function getServerInfoRows(array $server): array
-{
+{  
+    
     $rows = [
-        'Päringumeetod' => $server['REQUEST_METHOD'],
-        'Host' => $server['HTTP_HOST'],
-        'Serveri port' => $server['SERVER_PORT'],
-        'Päringu URL' => $server['REQUEST_URI'],
-        'Skripti asukoht' => $server['SCRIPT_FILENAME'],
-        'Serveri tarkvara' => $server['SERVER_SOFTWARE'],
-        'Dokumendijuure asukoht' => $server['DOCUMENT_ROOT']
+        [
+            'label' => 'Päringumeetod',
+            'value' => $server['REQUEST_METHOD'] ?? ''
+        ],
+
+        [
+            'label' => 'Host',
+            'value' => $server['HTTP_HOST'] ?? ''
+        ],
+        [
+            'label' => 'Serveri port',
+            'value' => $server['SERVER_PORT'] ?? ''
+        ],
+        [
+            'label' => 'Päringu URL',
+            'value' => $server['REQUEST_URI'] ?? ''
+        ],
+        [
+            'label' => 'Skripti asukoht',
+            'value' => $server['SCRIPT_FILENAME'] ?? ''
+        ],
+        [
+            'label' => 'Serveri tarkvara',
+            'value' => $server['SERVER_SOFTWARE'] ?? ''
+        ],
+        [
+            'label' => 'Dokumendijuure asukoht',
+            'value' => $server['DOCUMENT_ROOT'] ?? ''
+        ],
+        
+        
     ];
 
     return $rows;
