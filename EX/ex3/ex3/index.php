@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <form method="post" action="http://localhost:8000/">
         <input name="name">
-        <input type="submit" name="Submit" />
+        <input type="submit" name="submit" />
     </form>
 </body>
 </html>
