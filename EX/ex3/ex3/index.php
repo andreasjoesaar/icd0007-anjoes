@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: index.php?error=missing_name');
         exit();
     } else {
-        header('Location: /success.php?name=' . urlencode($name));
+        header('Location: success.php?name=' . urlencode($name));
         exit();
     }   
 }
