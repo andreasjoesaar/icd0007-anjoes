@@ -10,9 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($_POST['email'])) {
         $errors['email'] = "No email provided";
     } else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-        $errors['email'] = "Wrong email format";
-        $email = $errors['email'];
-        header('Location: email_error.php');
+        $errors['email'] = "Wrong email format";        
     }
     if (empty($_POST['message'])) {
         $errors['message'] = "No message provided";
@@ -60,8 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="message">Message</label>
         <input name="message" type="textarea"><br><br>
         <div>
+             <h3 id="error">
             <?php if (array_key_exists('message', $errors)):
-                echo $errors['message']; endif ?>
+                echo $errors['message']; ?>
+            </h3>    
+            <?php endif; ?>
         </div>
         <input type="submit" name="submit"><br><br>
 
