@@ -1,23 +1,26 @@
 <?php
-setcookie('kylastaja', 'Ants', [
-    'expires' => time() + 3600,
-    'secure' => true,
-    'httponly' => true,
-    'samesite' => 'Lax'
-]);
 
+session_start();
+
+
+if (isset($_SESSION['username'])) {
+    echo "Username: " . $_SESSION['username'];
+}
+
+if (isset($_POST['username'])) {
+    $_SESSION['username'] = $_POST['username'];
+}
 
 if (!isset($_COOKIE['count'])) {
+    print("<p>Tegu on esimese külastusega</p>");
     $count = 1;
-    setcookie('count', $count);
+    setcookie('count', $count, time() + 3600);
 } else {
+    print("<p>Tegu on mitmenda külastusega</p>");
     $count = ++$_COOKIE['count'];
-    setcookie('count', $count);
+    setcookie('count', $count, time() + 3600);
 }
 
-if (isset($_COOKIE['kylastaja'])) {
-    print 'Tere, ' . $_COOKIE['kylastaja'];
-}
 
 ?>
 
@@ -33,7 +36,7 @@ if (isset($_COOKIE['kylastaja'])) {
         <?php echo $count;
         ?>
     </div> <br>
-    <form method="post">
+    <form method="post" action="">
         <label for="username">Username</label>
         <input type="text" name="username">
         <input type="submit" name="submit"><br><br>
