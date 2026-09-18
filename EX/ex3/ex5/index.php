@@ -3,12 +3,12 @@
 session_start();
 
 
-if (isset($_SESSION['username'])) {
-    echo "Username: " . $_SESSION['username'];
+if (isset($_SESSION['nickname'])) {
+    echo "nickname: " . $_SESSION['nickname'];
 }
 
-if (isset($_POST['username'])) {
-    $_SESSION['username'] = $_POST['username'];
+if (isset($_POST['nickname'])) {
+    $_SESSION['nickname'] = $_POST['nickname'];
 }
 
 if (!isset($_COOKIE['count'])) {
@@ -37,8 +37,8 @@ if (!isset($_COOKIE['count'])) {
         ?>
     </div> <br>
     <form method="post" action="">
-        <label for="username">Username</label>
-        <input type="text" name="username" >
+        <label for="nickname">nickname</label>
+        <input type="text" name="nickname" >
         <input type="submit" name="submit"><br><br>
     </form>
 </body>
