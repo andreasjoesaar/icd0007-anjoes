@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errors)) {
         $message = $_POST['message'];
         header('Location: success.php/?message='.urldecode($message));
+        exit();
     }
 }
 ?>

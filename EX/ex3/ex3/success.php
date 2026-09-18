@@ -12,6 +12,7 @@
             <?php endif; ?>
             
             <a href="index.php"> Go back</a>
+            
         </p>
     </body>
     

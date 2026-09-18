@@ -3,8 +3,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     if (!$name) {
         header('Location: index.php?error=missing_name');
+        exit();
     } else {
-        header('Location: ../success.php?name=' . urlencode($name));
+        header('Location: /success.php?name=' . urlencode($name));
         exit();
     }   
 }
@@ -18,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <form method="post" action="/submit.php">
+    <form method="post" action="">
         <input name="name">
         <input type="submit" name="submit" />
     </form>
