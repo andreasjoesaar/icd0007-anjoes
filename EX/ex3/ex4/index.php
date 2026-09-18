@@ -58,10 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="message">Message</label>
         <input name="message" type="textarea"><br><br>
         <div>
-             <h3 id="error">
-            <?php if (array_key_exists('message', $errors)):
-                echo $errors['message']; ?>
-            </h3>    
+            <?php if (array_key_exists('message', $errors)): ?>
+                <h3 id="error">
+                    <?php echo $errors['message']; ?>
+                </h3>    
             <?php endif; ?>
         </div>
         <input type="submit" name="submit"><br><br>
