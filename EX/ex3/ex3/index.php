@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$name) {
         header('Location: index.php?error=missing_name');
     } else {
-        header('Location: success.php?name=' . urlencode($name));
+        header('Location: ../success.php?name=' . urlencode($name));
         exit();
     }   
 }
