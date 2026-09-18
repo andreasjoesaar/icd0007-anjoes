@@ -1,14 +1,23 @@
 <?php
+$errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!$_POST['name']) {
-        header('Location: index.php?error=missing_name');
+    
+    
+    if (empty($_POST['name'])) {
+        $errors['name'] = "No name provided";
     }
-    if (!$_POST['email']) {
-        header('Location: index.php?error=missing_email');
+    if (empty($_POST['email'])) {
+        $errors['email'] = "No email provided";
     }
-    if (!$_POST['message']) {
-        header('Location: index.php?error=missing_message');
+    if (empty($_POST['message'])) {
+        $errors['message'] = "No message provided";
+    } else if (strlen($_POST['message'])< 10) {
+        $errors['message'] = "Message too short";
+    }
+    if (empty($errors)) {
+        $message = $_POST['message'];
+        header('Location: success.php/?message='.urldecode($message));
     }
 }
 ?>
@@ -26,9 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input name="name"><br><br>
 
         <div>
-            <?php if (isset($_GET['error']) && $_GET['error'] === 'missing_name'): ?>
+            <?php if (array_key_exists('name', $errors)): ?>
                 <p id="error">
-                    No name provided
+                    <?php echo $errors['name'];?>
                 </p>
             <?php endif; ?>
         </div>
@@ -37,21 +46,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input name="email" type="email"><br><br>
 
         <div>
-            <?php if (isset($_GET['error']) && $_GET['error'] === 'missing_email'): ?>
-                <p id="error">
-                    No email provided
-                </p>
+            <?php if (array_key_exists('email', $errors)): ?>
+                <h3 id="error">
+                    <?php echo $errors['email'];?>
+                </h3>
             <?php endif; ?>
         </div>
 
         <label for="message">Message</label>
         <input name="message" type="textarea"><br><br>
         <div>
-            <?php if (isset($_GET['error']) && $_GET['error'] === 'missing_message'): ?>
-                <p id="error">
-                    No message provided
-                </p>
-            <?php endif; ?>
+            <?php if (array_key_exists('message', $errors)):
+                echo $errors['message']; endif ?>
         </div>
         <input type="submit" name="submit"><br><br>
 
