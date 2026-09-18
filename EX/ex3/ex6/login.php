@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-
+include('lib.php');
 session_start();
 
 $error = '';
@@ -8,15 +8,22 @@ $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim((string)($_POST['username'] ?? ''));
     $password = (string)($_POST['password'] ?? '');
-
-    // TODO: kontrolli kasutajanime ja parooli
-
-    $error = 'Vale kasutajanimi või parool.';
+    
+    if (!isValidLogin($username, $password)) {
+        $error = 'Vale kasutajanimi või parool.';
+    } else {
+        $_SESSION['username'] = $username;
+        header('Location:dashboard.php');
+        exit();
+    }
+    
 }
 ?>
 <!doctype html>
 <html lang="et">
 <head><meta charset="utf-8"><title>Sisselogimine</title></head>
+<?php include('partials/header.php') ?>
+<?php include('partials/nav.php') ?>
 <body>
 <h1>Sisselogimine</h1>
 
@@ -34,4 +41,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <button type="submit" name="submit">Sisene</button>
 </form>
 </body>
+<?php include('partials/footer.php') ?>
 </html>
