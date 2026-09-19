@@ -38,7 +38,7 @@ if (!isset($_COOKIE['count'])) {
     </div> <br>
     <form method="post" action="">
         <label for="nickname">nickname</label>
-        <input type="text" name="#nickname" >
+        <input type="text" name="nickname" id="nickname" >
         <input type="submit" name="submit"><br><br>
     </form>
 </body>
