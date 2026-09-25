@@ -1,6 +1,14 @@
 <?php
 
-$redirect = false;
+if (isset($_GET['name'])) {
+    $success = true;
+    $name = $_GET['name'];
+    $redirect = false;
+} else {
+    $redirect = false;
+    $success = false;
+}
+
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $name = $_POST['name'];
@@ -12,8 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     }
 }
 if ($redirect) {
-    header('Location: /' . $name);
-    exit();
+    header('Location:' . $_SERVER['SCRIPT_NAME'] . '/?name=' . $name);
+    
 }
 
 ?>
@@ -26,7 +34,7 @@ if ($redirect) {
 <body>
 <h1>Vormi suunamine</h1>
 
-<?php if ($redirect) :?>
+<?php if ($success) :?>
 <p id="success">Tere, <?php echo $name ?>! Vorm esitati edukalt.</p>
 
 <?php else :?>
