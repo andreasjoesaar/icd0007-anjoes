@@ -30,8 +30,8 @@ if ($redirect) {
 <p id="success">Tere, <?php echo $name ?>! Vorm esitati edukalt.</p>
 
 <?php else :?>
-<p id="error"><?php foreach($errors as $error):?></p>
-<p><?php echo $error?></p>
+<?php foreach($errors as $error):?>
+<p id="error"> <?php echo $error?></p>
 <?php endforeach;?>
 
 <form method="post" action="">
