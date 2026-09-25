@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="et">
+<header id = "page-header">
+    <meta charset="UTF-8">
+    <title>HW 1 | Task Form</title>
+
+</header>
+
+<nav>
+    <a href="index.html" id="dashboard-link">Dashboard</a>
+    <a href="project-list.html" id="project-list-link">Project list</a>
+    <a href="project-form.html" id="project-form-link">Project form</a>
+    <a href="task-list.html" id="task-list-link">Task list</a>
+    <a href="task-form.html" id="task-form-link">Task form</a>
+</nav>
+
+<body>
+    <h1> Task form</h1>
+    <form id="task-form">
+        <div>
+            Task
+            <input type="text" id="task-title">
+        </div>
+
+        <div>
+            Project
+            <select id="task-project">
+                <option value="Project 1">Project 1</option>
+                <option value="Project 2">Project 2</option>
+            </select>
+        </div>
+
+        <div>
+            Status
+            <select id="task-status">
+                <option value="not-late">Not Late</option>
+                <option value="late">Late</option>
+            </select>
+        </div>
+        
+        <div>
+            Priority
+            <select id="task-priority">
+                <option value="1">low</option>
+                <option value="2">medium</option>
+                <option value="3">high</option>
+            </select>
+        </div>
+
+        <div>
+            Due
+            <input type="date" id="task-due">
+        </div>
+
+        <div>
+            Description
+            <textarea id="task-description"></textarea>
+        </div>
+
+        <div>
+            <button type="submit" id="submit-button">Submit</button>
+        </div>
+    </form>
+</body>
+
+<footer id="page-footer">
+    <p> See on jalus</p>
+</footer>
+</html>
