@@ -1,12 +1,14 @@
 <?php
 
 $errors = [];
-
+$success = false;
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $name = trim($_POST['name']) ?? "";
     $email = trim($_POST['email']) ?? "";
     $rating = $_POST['rating'] ?? "";
     $comment = trim($_POST['comment']) ?? "";
+    
+
     if ($name === '') {
         $errors[] = "Nimeväli ei saa tühjaks jääda";
     }
@@ -30,6 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if ($comment === '') {
         $errors[] = "Kommentaari väli ei saa tühjaks jääda";
     }
+
+    if(!$errors) {
+        $success = true;
+    }
 }
 
 
@@ -46,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 </head>
 <body>
 <h1>Tagasiside</h1>
-<?php if($_SERVER['REQUEST_METHOD'] === "POST" && !$errors):?>
+<?php if ($success):?>
 <p id="success" >Tagasiside saadetud edukalt.</p>
 <?php endif;?>
 <ul id="error-list">
@@ -54,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     <li> <?php echo $error?></li>
     <?php endforeach; ?>
 </ul>
+<?php if (!$success):?>
 <form method="post" action="">
     <div>
         <label for="name">Nimi</label>
@@ -80,5 +87,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     </div>
     <button type="submit" name="submit">Saada</button>
 </form>
+<?php endif;?>
 </body>
 </html>

@@ -5,7 +5,7 @@ if (isset($_GET['name'])) {
 } else {
     $errors[] = 'Nime ei leitud';
     $name = "Külaline";
-}
+} 
 
 $method = '';
 $script = '';
