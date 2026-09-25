@@ -1,16 +1,19 @@
 <?php
 
-$incorrect = false;
+$redirect = false;
+$errors = [];
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $name = $_POST['name'];
     if ($name  === "") {
-        $incorrect = true;
+        $errors[] = "Nimi ei tohi olla tühi.";
     }
-
-    if ($incorrect === false) {
-        header("Location: .");
-        exit();
+    if ($errors === []) {
+        $redirect = true;
     }
+}
+if ($redirect) {
+    header('Location: /' . $name);
+    exit();
 }
 
 ?>
@@ -23,25 +26,20 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 <body>
 <h1>Vormi suunamine</h1>
 
-<?php if(!$incorrect && $_SERVER['REQUEST_METHOD'] === "POST"):?>
+<?php if ($redirect) :?>
 <p id="success">Tere, <?php echo $name ?>! Vorm esitati edukalt.</p>
-<?php endif; ?>
 
-<?php if ($incorrect && $_SERVER['REQUEST_METHOD'] === "POST"): ?>
-<p id="error">Nimi ei tohi olla tühi.</p>
-<?php endif; ?>
+<?php else :?>
+<p id="error"><?php foreach($errors as $error):?></p>
+<p><?php echo $error?></p>
+<?php endforeach;?>
 
-
-
-<?php if($incorrect || $_SERVER['REQUEST_METHOD'] !== "POST"): ?>
 <form method="post" action="">
     <label for="name">Nimi</label>
     <input type="text" id="name" name="name" value="">
     <button type="submit" name="submit">Saada</button>
 </form>
-
 <?php endif;?>
-
 
 </body>
 </html>
