@@ -4,22 +4,22 @@ if (isset($_GET['status'])) {
     $status = $_GET['status'];
     switch ($status) {
         case "404" :
-            http_response_code($status);
+            http_response_code(404);
             $explanation = "Not Found";
             break;
         case "500" :
-            http_response_code($status);
+            http_response_code(500);
             $explanation = "Internal Server Error";
             break;
         case "200" :
-            http_response_code($status);
+            http_response_code(200);
             $explanation = "OK";
             break;
     }
 
 } else {
     $status = "200";
-    http_response_code($status);
+    http_response_code(200);
     $explanation = "OK";
 }
 
