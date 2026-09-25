@@ -10,9 +10,9 @@ $items = [
 ];
 
 $items_to_emit = [];
-if (isset($_GET['query'])) {
-    var_dump($_GET['query']);
-    $query_array = explode(" ", strtoupper(trim($_GET['query'])));
+if ($_GET['query']) {
+    $query = $_GET['query'];
+    $query_array = explode(" ", strtoupper(trim($query)));
     foreach ($query_array as $query_word) {
         foreach ($items as $sentence) {
             $sentence_as_array = explode(" ",strtoupper($sentence));
@@ -22,6 +22,8 @@ if (isset($_GET['query'])) {
             }
         }
     }
+} else {
+    $items_to_emit = $items;
 }
 
 
@@ -35,7 +37,7 @@ if (isset($_GET['query'])) {
 <body>
 <form method="get" action="">
     <label for="query">Otsi</label>
-    <input type="text" id="query" name="query" value="">
+    <input type="text" id="query" name="query" value="<?php print $query?>">
     <button type="submit" name="submit">Otsi</button>
 </form>
 
