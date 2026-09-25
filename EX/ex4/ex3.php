@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $name = trim($_POST['name']) ?? "";
     $email = trim($_POST['email']) ?? "";
     $rating = $_POST['rating'] ?? "";
-    $kommentaar = trim($_POST['kommentaar']) ?? "";
+    $comment = trim($_POST['comment']) ?? "";
     if ($name === '') {
         $errors[] = "Nimeväli ei saa tühjaks jääda";
     }
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $errors[] = "Hinnangu väli ei saa tühjaks jääda";
     }
 
-    if ($kommentaar === '') {
+    if ($comment === '') {
         $errors[] = "Kommentaari väli ei saa tühjaks jääda";
     }
 }
@@ -66,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     <div>
         <label for="rating">Hinnang</label>
         <select name="rating" value = "">
+            <option value=""></option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -75,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     </div>
     <div>
         <label for="comment">Kommentaar</label>
-        <textarea rows="4" cols="50" name="kommentaar"> </textarea>
+        <textarea rows="4" cols="50" name="comment"> </textarea>
     </div>
     <button type="submit" name="submit">Saada</button>
 </form>
