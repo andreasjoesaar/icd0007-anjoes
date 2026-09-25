@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 }
 if ($redirect) {
     header('Location:' . $_SERVER['SCRIPT_NAME'] . '/?name=' . $name);
-    
+    exit();
 }
 
 ?>
