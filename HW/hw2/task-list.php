@@ -2,16 +2,12 @@
 <html lang="et">
 <header id = "page-header">
     <meta charset="UTF-8">
-    <title>HW 1 | Task List</title>
+    <title>HW 2 | Task List</title>
 
 </header>
-<nav>
-    <a href="index.html" id="dashboard-link">Dashboard</a>
-    <a href="project-list.html" id="project-list-link">Project list</a>
-    <a href="project-form.html" id="project-form-link">Project form</a>
-    <a href="task-list.html" id="task-list-link">Task list</a>
-    <a href="task-form.html" id="task-form-link">Task form</a>
-</nav>
+<?php 
+include('nav.php');
+?>
 
 <body>
     <div>
@@ -42,9 +38,7 @@
     </div>
 </body>
 
-<footer id="page-footer">
-    <div>
-        <p> See on jalus</p>
-    </div>
-</footer>
+<?php 
+include('footer.php')
+?>
 </html>
