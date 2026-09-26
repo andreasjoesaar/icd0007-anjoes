@@ -1,3 +1,17 @@
+<?php
+try {
+    $projects = file('data/projects.txt');
+    $projects_arr = [];
+    foreach($projects as $json_line) {
+        array_push($projects_arr, json_decode($json_line, true));
+    }
+} catch (Exception $e) {
+    echo "Unable to open file" . $e->getMessage() . PHP_EOL;
+}
+    
+
+?>
+
 <!doctype html>
 <html lang="et">
 <header id = "page-header">
@@ -17,18 +31,16 @@ include('nav.php');
             <th>Deadline</th>
             <th>Priority</th>
         </tr>
+        
+        <?php 
+        foreach($projects_arr as $project):?>
         <tr>
-            <td>This homework</td>
-            <td>Late</td>
-            <td>13.09.2026</td>
-            <td>high</td>
+        <td> <?php echo $project['name']?> </td>
+        <td> <?php echo $project['status']?> </td>
+        <td> <?php echo $project['deadline']?> </td>
+        <td> <?php echo $project['priority']?> </td>
         </tr>
-        <tr>
-            <td>Next homework</td>
-            <td>Not late</td>
-            <td>20.09.2026</td>
-            <td>medium</td>
-        </tr>
+        <?php endforeach ?>
     </table>
 </body>
 
