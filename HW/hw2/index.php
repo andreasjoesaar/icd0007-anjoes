@@ -15,14 +15,13 @@ try {
 
 
 ?>
-
 <!doctype html>
 <html lang="et">
-<header id = "page-header">
+<head id = "page-header">
     <meta charset="UTF-8">
     <title>HW 2</title>
 
-</header>
+</head>
 
 
 
