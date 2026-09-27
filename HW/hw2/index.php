@@ -13,6 +13,16 @@ try {
     echo "Unable to open file" . $e->getMessage() . PHP_EOL;
 }
 
+try {
+    $tasks = file(__DIR__. '/data/tasks.txt');
+    $task_count = 0;
+    foreach($tasks as $json_line) {
+        $task_count++;
+    }
+} catch (Exception $e) {
+    echo "Unable to open file" . $e->getMessage() . PHP_EOL;
+}
+
 
 ?>
 <!doctype html>
@@ -37,8 +47,7 @@ try {
 
     <div id="overview-block-2">
         <h3>Nr of tasks</h3>
-        
-
+        <?php echo $task_count?>
     </div>
 
     <div id="overview-block-3">
