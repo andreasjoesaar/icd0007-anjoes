@@ -1,3 +1,2 @@
 {"name" : "This homework", "status" : "Late", "deadline" : "13.09.2026", "status" : "Done", "priority" : "low"}
 {"name" : "Next homework", "status" : "Not late", "deadline" : "20.09.2026","status" : "Active", "priority" : "high"}
-{"name":"sadsadas","description":"asdasdsa","status":"Planning","deadline":"12312-03-21","featured":"on","priority":"High"}

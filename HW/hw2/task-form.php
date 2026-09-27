@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             Project
             <select id="task-project" name="project">
                 <?php foreach($project_names as $project_name):?>
-                <option><?php echo htmlspecialchars($project_name) ?></option>
+                <option value="<?php echo htmlspecialchars($project_name); ?>"><?php echo htmlspecialchars($project_name); ?></option>
                 <?php endforeach;?>
             </select>
         </div>
