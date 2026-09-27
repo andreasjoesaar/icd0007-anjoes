@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             );
         
         file_put_contents(__DIR__ . $projects_path, PHP_EOL . json_encode($project_arr),FILE_APPEND);
-        header('Location: projects-list.php');
+        header('Location: project-list.php');
         exit();
     }
 }   
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-<body>
+<body id="project-form-page">
     <?php 
     include('nav.php');
     ?>

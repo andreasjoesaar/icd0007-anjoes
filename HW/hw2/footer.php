@@ -1,3 +1,3 @@
 <footer id="page-footer">
-    <p> Siin on jalus</p>
+    <p> Andreas Jõesaar Ltd 2026</p>
 </footer>
