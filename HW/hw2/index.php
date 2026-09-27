@@ -45,53 +45,25 @@ try {
         Welcome to the task manager
     </p>
     <table>
-        
-        
-            <td id="overview-block-1">
-                <h3>Nr of projects:</h3>
-                <p>
-                    <?php echo $project_count ?>
-                </p>
-            </td>
-        
-        
-    </table>    
-
-    <div id="overview-block-2">
-        <h3>Nr of tasks</h3>
-        <?php echo $task_count?>
-    </div>
-
-    <div id="overview-block-3">
-        <h3>Nr Done</h3>
-        <?php echo $done_count?>
-
-    </div>
-
-    <table border="1px" id="tasks-table">
-        Last tasks
-        <!--
-        TODO: txt faili parser
-        -->
-        <tr>
-            <th> Task name</th>
-            <th> Date </th>
-        </tr>
-        <tr>
-            <td> Task 1</td>
-            <td> 13.09.2026</td>
-        </tr>
-        <tr>
-            <td> Task 2</td>
-            <td> 20.09.2026</td>
-        </tr>
-
-
+        <td id="overview-block-1">
+            <h3>Nr of projects:</h3>
+            <p>
+                <?php echo $project_count ?>
+            </p>
+        </td>
+        <td id="overview-block-2">
+            <h3>Nr of tasks</h3>
+            <?php echo $task_count ?>
+        </td>
+        <td id="overview-block-3">
+            <h3>Nr Done</h3>
+            <?php echo $done_count ?>
+        </td>
     </table>
 
-    <?php 
+    <?php
     include('footer.php')
-    ?>
+        ?>
 </body>
 
 </html>
