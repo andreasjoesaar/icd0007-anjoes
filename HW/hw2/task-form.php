@@ -120,9 +120,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>
             Priority
             <select id="task-priority" name="priority">
-                <option>Low</option>
-                <option>Medium</option>
-                <option>High</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
             </select>
         </div>
 
