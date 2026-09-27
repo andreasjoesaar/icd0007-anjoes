@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             );
         
         file_put_contents(__DIR__ . $tasks_path, PHP_EOL . json_encode($task_arr),FILE_APPEND);
-        header('Location: task-list.php');
+        header('Location:task-list.php');
         exit();
     }
 }   
@@ -104,9 +104,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>
             Priority
             <select id="task-priority" name="priority">
-                <option value="1">Low</option>
-                <option value="2">Medium</option>
-                <option value="3">High</option>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
             </select>
         </div>
 
@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div>
             Owner
-            <input type="text" id="owner" name="owner">
+            <input type="text" id="task-owner" name="owner">
         </div>
 
         <div>

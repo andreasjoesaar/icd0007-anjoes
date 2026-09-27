@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             );
         
         file_put_contents(__DIR__ . $projects_path, PHP_EOL . json_encode($project_arr),FILE_APPEND);
-        header('Location: project-list.php');
+        header('Location:project-list.php');
         exit();
     }
 }   
