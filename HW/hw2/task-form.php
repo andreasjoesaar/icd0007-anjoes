@@ -10,7 +10,9 @@ foreach($projects as $json_line) {
 
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    /* if (!empty($_POST['title'])) {
+    /* 
+    Need kõik validationid tuleks teha !empty()-ga
+    if (!empty($_POST['title'])) {
         $title = $_POST['title'];
     } else $errors[] = 'Task title is required';
 
@@ -43,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else $errors[] = 'Task owner is required';
     */
 
-    $title = $_POST['title'] ?? "";
+    $title = htmlspecialchars($_POST['title']) ?? "";
     $project = $_POST['project'] ?? "";
     $description = $_POST['description'] ?? "";
     $status = $_POST['status'] ?? "";
