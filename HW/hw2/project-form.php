@@ -1,7 +1,7 @@
 <?php
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($_POST['name']) {
+    if (!empty($_POST['name'])) {
         $name = $_POST['name'];
     } else $errors[] = 'Project title is required';
 
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $priority = $_POST['priority'];
     } else $errors[] = 'Project priority is required';
 
-    if ($_POST['deadline']) {
+    if ($_POST['featured']) {
         $featured = $_POST['featured'];
     }
 
@@ -36,12 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'priority' => $priority
             );
         
-        file_put_contents(__DIR__ . $projects_path, PHP_EOL . json_encode($project_arr),FILE_APPEND);
-        header('Location:project-list.php');
+        file_put_contents(__DIR__ . $projects_path, json_encode($project_arr) . PHP_EOL,FILE_APPEND);
+        header('Location: project-list.php');
         exit();
     }
-}   
-
+}
 ?>
 <!doctype html>
 <html lang="et">
