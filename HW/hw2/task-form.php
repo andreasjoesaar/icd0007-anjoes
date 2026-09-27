@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'owner' => $owner
             );
         
-        file_put_contents(__DIR__ . $tasks_path, json_encode($task_arr) . PHP_EOL, FILE_APPEND);
+        file_put_contents(__DIR__ . $tasks_path, json_encode($task_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
         header('Location: task-list.php');
         exit();
     }
