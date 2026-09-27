@@ -1,1 +1,1 @@
-{"task" : "Next homework", "project" : "Not late", "description" : "20.09.2026","status" : "Active", "priority" : "high", "due" : "high", "complexity" : "high","owner" : "high"}
+{"title" : "Next homework", "project" : "Not late", "description" : "20.09.2026","status" : "Active", "priority" : "high", "due" : "high", "complexity" : "high","owner" : "high"}

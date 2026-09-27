@@ -17,7 +17,7 @@ try {
     <title>HW 2 | Task List</title>
 
 </head>
-<body>
+<body id="task-list-page">
     <?php
     include('nav.php');
     ?>
@@ -38,7 +38,7 @@ try {
             foreach ($tasks_arr as $task): ?>
                 <tr>
                     <td>
-                        <?php echo $task['task'] ?>
+                        <?php echo $task['title'] ?>
                     </td>
                     <td>
                         <?php echo $task['project'] ?>
