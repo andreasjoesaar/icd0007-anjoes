@@ -6,27 +6,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $name = $_POST['name'];
     } else $errors[] = 'Project title is required';
 
-    if ($_POST['description']) {
+    if (!empty($_POST['description'])) {
         $description = $_POST['description'];
     } else $errors[] = 'Project description is required';
 
-    if ($_POST['status']) {
+    if (!empty($_POST['status'])) {
         $status = $_POST['status'];
     } else $errors[] = 'Project status is required';
 
-    if ($_POST['deadline']) {
+    if (!empty($_POST['deadline'])) {
         $deadline = $_POST['deadline'];
     } else $errors[] = 'Project deadline is required';
 
-    if ($_POST['priority']) {
+    if (!empty($_POST['priority'])) {
         $priority = $_POST['priority'];
     } else $errors[] = 'Project priority is required';
 
-    if ($_POST['featured']) {
+    if (!isset($_POST['featured'])) {
         $featured = $_POST['featured'];
     }
     */
+    $name = $_POST['name'] ?? '';
+    $description = $_POST['description'] ?? '';
+    $status = $_POST['status'] ?? '';
+    $deadline = $_POST['deadline'] ?? '';
+    $priority = $_POST['priority'] ?? '';
+    $featured = $_POST['featured'] ?? '';
     
+
     $projects_path = '/data/projects.txt';
     if (!$errors) {
         $project_arr = array(

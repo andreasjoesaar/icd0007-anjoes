@@ -8,7 +8,6 @@ foreach($projects as $json_line) {
     }
 }
 
-
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     /* if (!empty($_POST['title'])) {
@@ -43,7 +42,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $owner = $_POST['owner'];
     } else $errors[] = 'Task owner is required';
     */
-    
+
+    $title = $_POST['title'] ?? "";
+    $project = $_POST['project'] ?? "";
+    $description = $_POST['description'] ?? "";
+    $status = $_POST['status'] ?? "";
+    $priority = $_POST['priority'] ?? "";
+    $due = $_POST['due'] ?? "";
+    $complexity = $_POST['complexity'] ?? "";
+    $owner = $_POST['owner'] ?? "";
+
     $tasks_path = '/data/tasks.txt';
     if (!$errors) {
         $task_arr = array(
