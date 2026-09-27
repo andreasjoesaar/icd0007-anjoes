@@ -14,11 +14,11 @@ try {
 
 <!doctype html>
 <html lang="et">
-<header id = "page-header">
+<head id = "page-header">
     <meta charset="UTF-8">
     <title>HW 2 | Project List</title>
 
-</header>
+</head>
 
 <body id="project-list-page">
     <?php 

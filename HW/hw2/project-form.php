@@ -32,7 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             );
         
         file_put_contents($projects_path, PHP_EOL . json_encode($project_arr),FILE_APPEND);
-
+        header('Location: projects-list.php');
+        exit();
     }
 }   
 
@@ -40,11 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!doctype html>
 <html lang="et">
-<header id = "page-header">
+<head id = "page-header">
     <meta charset="UTF-8">
     <title>HW 2 | Project Form</title>
 
-</header>
+</head>
 
 
 
@@ -67,9 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>
             Status
             <select id="project-status" name="status">
-                <option value="planning">Planning</option>
-                <option value="active">Active</option>
-                <option value="done">Done</option>
+                <option value="Planning">Planning</option>
+                <option value="Active">Active</option>
+                <option value="Done">Done</option>
             </select>
         </div>
 
