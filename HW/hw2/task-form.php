@@ -1,11 +1,16 @@
 <?php
 $project_names = [];
-$projects = file(__DIR__. '/data/projects.txt');
+$projects_file = __DIR__. '/data/projects.txt';
 
-foreach($projects as $json_line) {
+
+if (file_exists($projects_file)) {
+    $projects = file($projects_file, FILE_SKIP_EMPTY_LINES | FILE_IGNORE_NEW_LINES);
+    foreach($projects as $json_line) {
     if (json_decode($json_line,true)['name']) {
         array_push($project_names, json_decode($json_line,true)['name']);
     }
+}
+
 }
 
 $errors = [];
@@ -45,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else $errors[] = 'Task owner is required';
     */
 
-    $title = htmlspecialchars($_POST['title']) ?? "";
+    $title = $_POST['title'] ?? "";
     $project = $_POST['project'] ?? "";
     $description = $_POST['description'] ?? "";
     $status = $_POST['status'] ?? "";
@@ -98,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             Project
             <select id="task-project" name="project">
                 <?php foreach($project_names as $project_name):?>
-                <option> <?php echo htmlspecialchars($project_name) ?></option>
+                <option><?php echo htmlspecialchars($project_name) ?></option>
                 <?php endforeach;?>
             </select>
         </div>
