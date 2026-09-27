@@ -20,11 +20,7 @@ try {
 <head id = "page-header">
     <meta charset="UTF-8">
     <title>HW 2</title>
-
 </head>
-
-
-
 
 <body id="dashboard-page">
     <?php 
