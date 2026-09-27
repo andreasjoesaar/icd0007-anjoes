@@ -1,4 +1,17 @@
 <?php
+try {
+    $projects = file('data/projects.txt');
+    $project_count = 0;
+    $done_count = 0;
+    foreach($projects as $json_line) {
+        $project_count++;
+        if (json_decode($json_line,true)['status'] == 'Done') {
+            $done_count++;
+        }
+    }
+} catch (Exception $e) {
+    echo "Unable to open file" . $e->getMessage() . PHP_EOL;
+}
 
 
 ?>
@@ -22,15 +35,20 @@ include('nav.php')
     </p>
 
     <div id="overview-block-1">
-        Plokk 1
+        <h3>Nr of projects:</h3>
+        <?php echo $project_count?>
     </div>
 
     <div id="overview-block-2">
-        Plokk 3
+        <h3>Nr of tasks</h3>
+        
+
     </div>
 
     <div id="overview-block-3">
-        Plokk 3
+        <h3>Nr Done</h3>
+        <?php echo $done_count?>
+
     </div>
 
     <table border="1px" id="tasks-table">

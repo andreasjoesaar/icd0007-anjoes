@@ -22,23 +22,23 @@ try {
 <?php 
 include('nav.php');
 ?>
-<body>
+<body id="project-list-page">
     <table id="projects-table">
         <h3>Projects</h3>
         <tr>
-            <th>Name</th>
-            <th>Status</th>
+            <th name="name">Name</th>
+            <th >Status</th>
             <th>Deadline</th>
-            <th>Priority</th>
+            <th>Status</th>
         </tr>
         
         <?php 
         foreach($projects_arr as $project):?>
         <tr>
-        <td> <?php echo $project['name']?> </td>
-        <td> <?php echo $project['status']?> </td>
-        <td> <?php echo $project['deadline']?> </td>
-        <td> <?php echo $project['priority']?> </td>
+            <td> <?php echo $project['name']?> </td>
+            <td> <?php echo $project['status']?> </td>
+            <td> <?php echo $project['deadline']?> </td>
+            <td> <?php echo $project['status']?> </td>
         </tr>
         <?php endforeach ?>
     </table>
