@@ -19,10 +19,11 @@ try {
     <title>HW 2 | Project List</title>
 
 </header>
-<?php 
-include('nav.php');
-?>
+
 <body id="project-list-page">
+    <?php 
+    include('nav.php');
+    ?>
     <table id="projects-table">
         <h3>Projects</h3>
         <tr>
@@ -42,9 +43,10 @@ include('nav.php');
         </tr>
         <?php endforeach ?>
     </table>
+    <?php 
+    include('footer.php')
+    ?>
 </body>
 
-<?php 
-include('footer.php')
-?>
+
 </html>

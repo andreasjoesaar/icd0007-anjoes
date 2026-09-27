@@ -46,11 +46,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </header>
 
-<?php 
-include('nav.php');
-?>
+
 
 <body>
+    <?php 
+    include('nav.php');
+    ?>
     <h1> Project form</h1>
     <form id="project-form" method="post">
         <div>
@@ -85,9 +86,10 @@ include('nav.php');
             <button type="submit" id="submit-button" name="submit">Submit</button>
         </div>
     </form>
+    <?php 
+    include('footer.php')
+    ?>
 </body>
 
-<?php 
-include('footer.php')
-?>
+
 </html>

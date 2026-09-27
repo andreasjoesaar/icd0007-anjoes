@@ -6,11 +6,12 @@
 
 </header>
 
-<?php 
-include('nav.php');
-?>
+
 
 <body>
+    <?php 
+    include('nav.php');
+    ?>
     <h1> Task form</h1>
     <form id="task-form">
         <div>
@@ -57,9 +58,10 @@ include('nav.php');
             <button type="submit" id="submit-button">Submit</button>
         </div>
     </form>
+    <?php 
+    include('footer.php')
+    ?>
 </body>
 
-<?php 
-include('footer.php')
-?>
+
 </html>

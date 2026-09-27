@@ -25,11 +25,12 @@ try {
 </header>
 
 
-<?php 
-include('nav.php')
-?>
+
 
 <body id="dashboard-page">
+    <?php 
+    include('nav.php')
+    ?>
     <p id="welcome-text">
         Welcome to the task manager
     </p>
@@ -72,8 +73,9 @@ include('nav.php')
 
     </table>
 
+    <?php 
+    include('footer.php')
+    ?>
 </body>
-<?php 
-include('footer.php')
-?>
+
 </html>

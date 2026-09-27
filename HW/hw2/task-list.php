@@ -5,11 +5,12 @@
     <title>HW 2 | Task List</title>
 
 </header>
-<?php 
-include('nav.php');
-?>
+
 
 <body>
+    <?php 
+    include('nav.php');
+    ?>
     <div>
         <table id="tasks-table">
             <h3>Tasks</h3>
@@ -36,9 +37,10 @@ include('nav.php');
             </tr>
         </table>
     </div>
+    <?php 
+    include('footer.php')
+    ?>
 </body>
 
-<?php 
-include('footer.php')
-?>
+
 </html>
