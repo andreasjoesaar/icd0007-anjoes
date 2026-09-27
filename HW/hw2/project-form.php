@@ -1,6 +1,7 @@
 <?php
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    /*
     if (!empty($_POST['name'])) {
         $name = $_POST['name'];
     } else $errors[] = 'Project title is required';
@@ -24,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST['featured']) {
         $featured = $_POST['featured'];
     }
-
+    */
+    
     $projects_path = '/data/projects.txt';
     if (!$errors) {
         $project_arr = array(
