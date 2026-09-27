@@ -53,11 +53,15 @@ try {
         </td>
         <td id="overview-block-2">
             <h3>Nr of tasks</h3>
-            <?php echo $task_count ?>
+            <p>
+                <?php echo $task_count ?>
+            </p>
         </td>
         <td id="overview-block-3">
             <h3>Nr Done</h3>
-            <?php echo $done_count ?>
+            <p>
+                <?php echo $done_count ?>
+            </p>
         </td>
     </table>
 
