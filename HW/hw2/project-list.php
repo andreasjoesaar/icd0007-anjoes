@@ -1,6 +1,6 @@
 <?php
 try {
-    $projects = file('data/projects.txt');
+    $projects = file(__DIR__ . '/data/projects.txt');
     $projects_arr = [];
     foreach($projects as $json_line) {
         array_push($projects_arr, json_decode($json_line, true));
@@ -11,7 +11,6 @@ try {
     
 
 ?>
-
 <!doctype html>
 <html lang="et">
 <head id = "page-header">
@@ -30,7 +29,7 @@ try {
             <th name="name">Name</th>
             <th >Status</th>
             <th>Deadline</th>
-            <th>Status</th>
+            <th>Priority</th>
         </tr>
         
         <?php 
@@ -39,7 +38,7 @@ try {
             <td> <?php echo $project['name']?> </td>
             <td> <?php echo $project['status']?> </td>
             <td> <?php echo $project['deadline']?> </td>
-            <td> <?php echo $project['status']?> </td>
+            <td> <?php echo $project['priority']?> </td>
         </tr>
         <?php endforeach ?>
     </table>

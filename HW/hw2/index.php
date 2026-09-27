@@ -1,6 +1,6 @@
 <?php
 try {
-    $projects = file('data/projects.txt');
+    $projects = file(__DIR__. '/data/projects.txt');
     $project_count = 0;
     $done_count = 0;
     foreach($projects as $json_line) {

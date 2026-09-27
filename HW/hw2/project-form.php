@@ -17,21 +17,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $deadline = $_POST['deadline'];
     } else $errors[] = 'Project deadline is required';
 
+    if ($_POST['priority']) {
+        $priority = $_POST['priority'];
+    } else $errors[] = 'Project priority is required';
+
     if ($_POST['deadline']) {
         $featured = $_POST['featured'];
     }
 
-    $projects_path = 'data/projects.txt';
+    $projects_path = '/data/projects.txt';
     if (!$errors) {
         $project_arr = array(
             'name' => $name, 
             'description' => $description, 
             'status' => $status, 
             'deadline' => $deadline,
-            'featured' => $featured
+            'featured' => $featured,
+            'priority' => $priority
             );
         
-        file_put_contents($projects_path, PHP_EOL . json_encode($project_arr),FILE_APPEND);
+        file_put_contents(__DIR__ . $projects_path, PHP_EOL . json_encode($project_arr),FILE_APPEND);
         header('Location: projects-list.php');
         exit();
     }
@@ -81,6 +86,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>
             Featured
             <input type="radio" name="featured" id="project-featured">
+        </div>
+        <div>
+            Priority
+            <select id="project-priority" name="priority">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
         </div>
         <div>
             <button type="submit" id="submit-button" name="submit">Submit</button>
