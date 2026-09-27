@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             Project
             <select id="task-project" name="project">
                 <?php foreach($project_names as $project_name):?>
-                <option value=<?php echo $project_name ?>> <?php echo $project_name ?></option>
+                <option> <?php echo $project_name ?></option>
                 <?php endforeach;?>
             </select>
         </div>
@@ -104,9 +104,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>
             Priority
             <select id="task-priority" name="priority">
-                <option value="1">low</option>
-                <option value="2">medium</option>
-                <option value="3">high</option>
+                <option value="1">Low</option>
+                <option value="2">Medium</option>
+                <option value="3">High</option>
             </select>
         </div>
 
