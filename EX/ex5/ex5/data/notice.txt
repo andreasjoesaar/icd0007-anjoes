@@ -1,0 +1,3 @@
+Silumise näidis.
+
+See tekst peab olema leitav sõltumata käivituskataloogist.
