@@ -16,6 +16,9 @@ body {
     max-width: max-content;
 }
 
+.sidebar {
+    margin: 2px;
+}
 
 
 .stat {
