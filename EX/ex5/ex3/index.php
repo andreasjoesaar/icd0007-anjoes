@@ -35,11 +35,14 @@ function getNumberSummary(string $filename): array
 
         }
     }
-    $min = number_format(min($numbers),2);
-    $max = number_format(max($numbers),2);
+    if ($numbers) {
+        $min = min($numbers);
+        $max = max($numbers);
+    }
+    
 
     if ($count > 0) {
-        $average = number_format(round(floatval($sum / $count),2),2);
+        $average = round(floatval($sum / $count),2);
     }
     //var_dump("$count, $min, $max, $average \n" );
 
