@@ -1,0 +1,48 @@
+.layout {
+    display: block
+}
+
+.stats {
+    flex-direction : column;
+    gap: 0.5rem
+}
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: beige;
+    font-style: oblique;
+}
+.sidebar h1 {
+    max-width: max-content;
+}
+
+
+
+.stat {
+    padding: 0.5rem;
+}
+
+.content {
+    padding-left: 2rem;
+}
+
+.footer {
+    padding-top: 2px;
+}
+
+@media (min-width: 800px) {
+    .layout {
+        display: grid;
+        grid-template-columns: 1fr 9fr;
+        grid-template-rows: auto;
+        margin: 0.25rem;
+    }
+    .stats {
+        display: flex
+    }
+    .sidebar-nav {
+        display: flex;
+        flex-direction: column;
+    }
+    
+}
