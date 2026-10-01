@@ -18,8 +18,7 @@ function getNumberSummary(string $filename): array
     $count = 0;
     $sum = 0;
     $numbers = [];
-    $min = null;
-    $max = null;
+    
     $average = 0;
     foreach($file as $line) {
         if (!$line) {
@@ -27,22 +26,20 @@ function getNumberSummary(string $filename): array
         }
 
         if (is_numeric($line)) {
-            $number = intval($line);
+            $number = floatval($line);
             $count ++;
             $sum = $sum + $number;
             array_push($numbers, $number);
-            if ($number < $min || !$min) {
-                $min = $number;
-            }
-            if ($number > $max || !$max) {
-                $max = $number;
-            }
+            
             //var_dump($min, $max . PHP_EOL);
 
         }
     }
+    $min = number_format(min($numbers),2);
+    $max = number_format(max($numbers),2);
+
     if ($count > 0) {
-        $average = number_format(floatval($sum / $count),2);
+        $average = number_format(round(floatval($sum / $count),2),2);
     }
     //var_dump("$count, $min, $max, $average \n" );
 
