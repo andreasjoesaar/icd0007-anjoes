@@ -3,10 +3,17 @@ declare(strict_types=1);
 
 function readNotice(?string $filename = null): string
 {
-    $notice_arr = [];
     $notice = "";
-    $handle = null;
+    try {
+        $notice = file_get_contents($filename);
+    } catch (Exception $e) {
+        echo "$e is exception!";
+    }
+   
 
+    /*
+    $handle = null;
+    $notice_arr = [];
     try {
         $handle = fopen($filename, 'r');
 
@@ -20,9 +27,10 @@ function readNotice(?string $filename = null): string
         if ($handle)
             fclose($handle);
     }
-    if ($notice_arr) {
-        $notice = implode($notice_arr);
-    }
+    */
+
+    
+
     return $notice;
 }
 
