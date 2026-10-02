@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-function readNotice(?string $filename = null): string
+function readNotice(?string $filename): string
 {
     $notice = "";
     try {
