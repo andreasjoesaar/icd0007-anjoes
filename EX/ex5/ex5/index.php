@@ -1,14 +1,17 @@
 <?php
 declare(strict_types=1);
 
-function readNotice(?string $filename): string
+function readNotice(?string $filename = null): string
 {
     $notice = "";
-    try {
+    if (file_exists($filename)){
+        try {
         $notice = file_get_contents($filename);
-    } catch (Exception $e) {
-        echo "$e is exception!";
-    }
+        } catch (Exception $e) {
+            echo "$e is exception!";
+        }
+    } 
+    
    
 
     /*
@@ -28,9 +31,6 @@ function readNotice(?string $filename): string
             fclose($handle);
     }
     */
-
-    
-
     return $notice;
 }
 
