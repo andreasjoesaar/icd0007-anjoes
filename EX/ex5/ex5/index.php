@@ -4,6 +4,9 @@ declare(strict_types=1);
 function readNotice(?string $filename = null): string
 {
     $notice = "";
+    if (!$filename) {
+        return "";
+    }
     if (file_exists($filename)){
         try {
         $notice = file_get_contents($filename);
