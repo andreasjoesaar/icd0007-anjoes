@@ -5,7 +5,7 @@ function readNotice(?string $filename = null): string
 {
     $notice = "";
     if (!$filename) {
-        return "";
+        $filename = __DIR__ . '/data/notice.txt';
     }
     if (file_exists($filename)){
         try {
@@ -13,9 +13,7 @@ function readNotice(?string $filename = null): string
         } catch (Exception $e) {
             echo "$e is exception!";
         }
-    } 
-    
-   
+    }
 
     /*
     $handle = null;
