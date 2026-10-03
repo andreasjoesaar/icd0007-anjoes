@@ -1,19 +1,19 @@
 <?php
-$name =  $description = $status = $deadline = $priority = "";
-$featured = false;
+$name = $description = $status = $deadline = $priority = "";
+$featured = "no";
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+
     if (empty($_POST['name'])) {
         $errors[] = 'Project title is required';
-    } else if (strlen($_POST['name']) <= 5 || strlen($_POST['name']) > 25){
+    } else if (strlen($_POST['name']) <= 5 || strlen($_POST['name']) > 25) {
         $errors[] = 'Project title must be between 5 and 25 chars';
-    } 
+    }
     $name = $_POST['name'];
 
     if (empty($_POST['description'])) {
         $errors[] = 'Project decription is required';
-    } else if (strlen($_POST['description']) <= 5 || strlen($_POST['description']) > 40){
+    } else if (strlen($_POST['description']) <= 5 || strlen($_POST['description']) > 40) {
         $errors[] = 'Project description must be between 5 and 40 chars';
     }
     $description = $_POST['description'];
@@ -25,17 +25,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($_POST['deadline'])) {
         $errors[] = 'Project deadline is required';
-    } else if (strtotime($_POST['deadline']) < time()){
+    } else if (strtotime($_POST['deadline']) < time()) {
         $errors[] = 'Project deadline cannot be earlier than today';
-    } 
+    }
     $deadline = $_POST['deadline'];
 
     if (!empty($_POST['priority'])) {
         $priority = $_POST['priority'];
-    } else $errors[] = 'Project priority is required';
+    } else
+        $errors[] = 'Project priority is required';
 
     if (!isset($_POST['featured']) || $_POST['featured'] == false) {
-        $featured = false;    
+        $featured = false;
     } else {
         $featured = true;
     }
@@ -51,15 +52,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $projects_path = '/data/projects.txt';
     if (!$errors) {
         $project_arr = array(
-            'name' => $name, 
-            'description' => $description, 
-            'status' => $status, 
+            'name' => $name,
+            'description' => $description,
+            'status' => $status,
             'deadline' => $deadline,
             'featured' => $featured,
             'priority' => $priority
-            );
-        
-        file_put_contents(__DIR__ . $projects_path, json_encode($project_arr) . PHP_EOL,FILE_APPEND);
+        );
+
+        file_put_contents(__DIR__ . $projects_path, json_encode($project_arr) . PHP_EOL, FILE_APPEND);
         header('Location: project-list.php');
         exit();
     }
@@ -67,7 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!doctype html>
 <html lang="et">
-<head id = "page-header">
+
+<head id="page-header">
     <meta charset="UTF-8">
     <title>HW 2 | Project Form</title>
     <link rel="stylesheet" href="assets/style.css">
@@ -76,34 +78,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 <body id="project-form-page">
-    <?php 
+    <?php
     include('nav.php');
     ?>
     <h1> Project form</h1>
 
     <block class="error-block">
-        <?php foreach($errors as $error):?>
-        <p>
-            <?php echo $error ?>
-        </p>
-        <?php endforeach?>
+        <?php foreach ($errors as $error): ?>
+            <p>
+                <?php echo $error ?>
+            </p>
+        <?php endforeach ?>
     </block>
 
     <form id="project-form" method="post">
         <div>
             Title
-            <input type="text" id="project-name" name="name" value="<?php echo $name?>">
+            <input type="text" id="project-name" name="name" value="<?php echo $name ?>">
         </div>
 
         <div>
             Description
-            <textarea id="project-description" name="description" ><?php echo $description?></textarea>
+            <textarea id="project-description" name="description"><?php echo $description ?></textarea>
         </div>
 
         <div>
             Status
-            <select id="project-status" name="status"> 
-                <option value="<?php echo $status?>"> <?php echo $status?></option>
+            <select id="project-status" name="status">
+                <option value="<?php echo $status ?>"> <?php echo $status ?></option>
                 <option value="Planning">Planning</option>
                 <option value="Active">Active</option>
                 <option value="Done">Done</option>
@@ -112,17 +114,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div>
             Deadline
-            <input type="date" id="project-deadline" name="deadline" value="<?php echo $deadline?>"> 
+            <input type="date" id="project-deadline" name="deadline" value="<?php echo $deadline ?>">
         </div>
 
         <div>
             Featured
-            <input type="radio" name="featured" id="project-featured" value="<?php echo $featured?>"> 
+            <div>
+                <input type="radio" name="project-featured" id="project-featured" value="">
+                <label> Yes</label>
+            </div>
+            <div>
+                <input type="radio" name="project-featured" id="project-featured" value="">
+                <label> No</label>
+            </div>
+
         </div>
         <div>
             Priority
             <select id="project-priority" name="priority">
-                <option value="<?php echo $priority?>"><?php echo $priority?></option>
+                <option value="<?php echo $priority ?>"><?php echo $priority ?></option>
                 <option value="High">High</option>
                 <option value="Medium">Medium</option>
                 <option value="Low">Low</option>
@@ -132,9 +142,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" id="submit-button" name="submit">Submit</button>
         </div>
     </form>
-    <?php 
+    <?php
     include('footer.php')
-    ?>
+        ?>
 </body>
 
 
