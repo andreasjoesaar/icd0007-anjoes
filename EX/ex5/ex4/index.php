@@ -46,7 +46,6 @@ function getAverageHoursByRole(string $filename): array
         
         }
         
-
         //var_dump($avgs);
     } catch (Exception $e) {
         echo "$e is exception!";
@@ -54,12 +53,14 @@ function getAverageHoursByRole(string $filename): array
         if ($handle)
             fclose($handle);
     }
-
-    for($i = 0; $i < $jobs_total; $i++) {
+    //var_dump($jobs_matrix);
+    for($i = 0; $i < $jobs_total+1; $i++) {
         $role = $jobs_matrix[0][$i];
         $avg = round($jobs_matrix[1][$i] / $jobs_matrix[2][$i],2);
+        var_dump($avg);
         $avgs[$role] = $avg;
     }
+    
     return $avgs;
 }
 
