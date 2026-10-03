@@ -55,6 +55,9 @@ function getAverageHoursByRole(string $filename): array
     }
     //var_dump($jobs_matrix);
     for($i = 0; $i < $jobs_total+1; $i++) {
+        if (empty($jobs_matrix[0][$i])) {
+            break;
+        }
         $role = $jobs_matrix[0][$i];
         $avg = round($jobs_matrix[1][$i] / $jobs_matrix[2][$i],2);
         var_dump($avg);
