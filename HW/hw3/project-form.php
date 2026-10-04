@@ -176,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label> yes</label>
             </div>
             <div>
-                <input type="radio" name="featured" id="project-featured-no" <?php if ($featured === false || $featured === "no" || $featured === "")
+                <input type="radio" name="featured" id="project-featured-no" <?php if ($featured === false || $featured === "no")
                     echo "checked"; ?> value="no">
                 <label> no</label>
             </div>
