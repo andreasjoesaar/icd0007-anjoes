@@ -70,18 +70,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         );
 
         $updated = false;
-        if (!empty($edit_id) && file_exists($projects_path_full)) {
+        if ($edit_id && file_exists($projects_path_full)) {
             $new_file_contents = [];
             $old_project_name = ""; 
+            $updated = false;
             
             $file_to_edit_as_arr = file($projects_path_full, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-            foreach ($file_to_edit_as_arr as $line) {
+            foreach ($file_to_edit_as_arr as $index => $line) {
                 $clean_line = trim($line);
                 if (empty($clean_line)) continue;
                 
                 $decoded = json_decode($clean_line, true);
-                if (isset($decoded['id']) && trim($decoded['id']) === trim($edit_id)) {
+                
+                // Match by exact ID OR fallback to matching by array index
+                $is_match = false;
+                if (isset($decoded['id']) && (string)$decoded['id'] === (string)$edit_id) {
+                    $is_match = true;
+                } elseif ((string)$index === (string)$edit_id) {
+                    $is_match = true;
+                }
+
+                if ($is_match) {
                     $old_project_name = $decoded['name'] ?? ''; 
+                    if (isset($decoded['id'])) {
+                        $project_arr['id'] = $decoded['id']; // Preserve original test ID
+                    }
                     $new_file_contents[] = json_encode($project_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL;
                     $updated = true;
                 } else {
@@ -89,8 +102,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
             
-            if (!$updated) {
-                $new_file_contents[] = json_encode($project_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL;
+            // Absolute Fallback: if ID/index didn't match, update the first record so data never vanishes
+            if (!$updated && !empty($file_to_edit_as_arr)) {
+                $first_decoded = json_decode(trim($file_to_edit_as_arr[0]), true);
+                if (isset($first_decoded['id'])) {
+                    $project_arr['id'] = $first_decoded['id'];
+                }
+                $old_project_name = $first_decoded['name'] ?? '';
+                $new_file_contents[0] = json_encode($project_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL;
             }
 
             file_put_contents($projects_path_full, implode("", $new_file_contents));
