@@ -70,7 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'priority' => $priority
         );
 
-        if ($edit_id !== '' && file_exists($projects_path_full)) {
+        $updated = false;
+        if ($edit_id && file_exists($projects_path_full)) {
             $new_file_contents = [];
             $old_project_name = ""; 
             
@@ -80,13 +81,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (empty($clean_line)) continue;
                 
                 $decoded = json_decode($clean_line, true);
-                if (isset($decoded['id']) && $decoded['id'] === $edit_id) {
+                if (isset($decoded['id']) && trim($decoded['id']) === trim($edit_id)) {
                     $old_project_name = $decoded['name'] ?? ''; 
                     $new_file_contents[] = json_encode($project_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL;
+                    $updated = true;
                 } else {
                     $new_file_contents[] = $clean_line . PHP_EOL;
                 }
             }
+            
+            // Fallback: if edit_id was provided but somehow not found in the file, append it so data isn't lost
+            if (!$updated) {
+                $new_file_contents[] = json_encode($project_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL;
+            }
+
             file_put_contents($projects_path_full, implode("", $new_file_contents));
             
             if ($old_project_name !== "" && $old_project_name !== $name) {
