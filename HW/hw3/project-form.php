@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     $projects_path = '/data/projects.txt';
-    $projects_path_full = '/data/projects.txt';
+    $projects_path_full = __DIR__ . '/data/projects.txt';
     
     if (empty($errors)) {
         $project_arr = array(
@@ -156,10 +156,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>
             Status
             <select id="project-status" name="status">
-                <option value="<?php echo $status ?>"> <?php echo $status ?></option>
-                <option value="Planning">Planning</option>
-                <option value="Active">Active</option>
-                <option value="Done">Done</option>
+                <option value="">Select Status</option>
+                <option value="Planning" <?php if ($status === 'Planning') echo 'selected'; ?>>Planning</option>
+                <option value="Active" <?php if ($status === 'Active') echo 'selected'; ?>>Active</option>
+                <option value="Done" <?php if ($status === 'Done') echo 'selected'; ?>>Done</option>
             </select>
         </div>
 

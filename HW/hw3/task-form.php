@@ -115,11 +115,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             foreach ($file_to_edit_as_arr as $line) {
                 $decoded = json_decode($line, true);
                 if (isset($decoded['id']) && $decoded['id'] === $edit_id) {
-                    // This is the one we are editing, push the NEW data instead
-                    // Make sure $task_arr includes the ID: $task_arr['id'] = $_GET['id'];
+
                     $new_file_contents[] = json_encode($task_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL;
                 } else {
-                    // Not the one we are editing, keep the OLD line intact
                     $new_file_contents[] = $line . PHP_EOL;
                 }
             }
@@ -189,11 +187,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <div>
             Priority
-            <select id="task-priority" name="priority">
+            <select id="project-priority" name="priority">
                 <option value="">Select Priority</option>
-                <option value="Low" <?php if ($priority === 'Low') echo 'selected'; ?>>Low</option>
-                <option value="Medium" <?php if ($priority === 'Medium') echo 'selected'; ?>>Medium</option>
                 <option value="High" <?php if ($priority === 'High') echo 'selected'; ?>>High</option>
+                <option value="Medium" <?php if ($priority === 'Medium') echo 'selected'; ?>>Medium</option>
+                <option value="Low" <?php if ($priority === 'Low') echo 'selected'; ?>>Low</option>
             </select>
         </div>
         
