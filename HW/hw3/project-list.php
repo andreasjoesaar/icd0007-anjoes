@@ -58,13 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton']) && !e
 
 <head>
     <meta charset="UTF-8">
-    <title>HW 3 | Project List</title>
+    <title>HW 3 | Project Form</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body id="project-list-page">
-    <?php 
-    include('header.php');
-    ?>
+    <?php include('header.php'); ?>
     <?php
     include('nav.php');
     ?>
