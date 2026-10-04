@@ -26,7 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton']) && !e
     if (file_exists($projects_path)) {
         $projects = file($projects_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         foreach ($projects as $line) {
-            $decoded = json_decode($line, true);
+            $clean_line = trim($line);
+            if (empty($clean_line))
+                continue; // Skip blank lines completely
+            $decoded = json_decode($clean_line, true);
             if ($decoded) {
                 $projects_arr[] = $decoded;
             }

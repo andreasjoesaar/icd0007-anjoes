@@ -19,15 +19,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton']) && !e
 }
 
 $tasks_arr = [];
-    if (file_exists($tasks_path)) {
-        $tasks = file($tasks_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        foreach ($tasks as $line) {
-            $decoded = json_decode($line, true);
-            if ($decoded) {
-                $tasks_arr[] = $decoded;
-            }
+if (file_exists($tasks_path)) {
+    $tasks = file($tasks_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($tasks as $line) {
+        $clean_line = trim($line);
+        if (empty($clean_line))
+            continue; // Skip blank lines completely
+        $decoded = json_decode($clean_line, true);
+        if ($decoded) {
+            $tasks_arr[] = $decoded;
         }
     }
+}
 ?>
 <!doctype html>
 <html lang="et">
@@ -64,12 +67,8 @@ include('header.php')
             <?php
             foreach ($tasks_arr as $task): ?>
                 <tr>
-                    <!--
-                        <td >
-                            <?php echo $task['task-id'] ?>
-                        </td>
-                        -->
-                    <td data-task-id="<?php echo htmlspecialchars($task['id'] ?? ''); ?>"> <?php echo htmlspecialchars($task['title'] ?? ''); ?> </td>
+                    <td data-task-id="<?php echo htmlspecialchars($task['id'] ?? ''); ?>">
+                        <?php echo htmlspecialchars($task['title'] ?? ''); ?> </td>
                     <td>
                         <?php echo $task['project'] ?>
                     </td>

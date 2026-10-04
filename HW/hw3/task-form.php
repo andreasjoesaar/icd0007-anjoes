@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     $task_to_edit = [];
     foreach ($tasks as $line) {
         $decoded = json_decode($line, true);
-        // If the task has an ID and it matches the URL, grab it and stop looking
         if (isset($decoded['id']) && $decoded['id'] === $_GET['id']) {
             $task_to_edit = $decoded;
             break;
