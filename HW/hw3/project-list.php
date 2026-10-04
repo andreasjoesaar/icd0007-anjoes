@@ -23,13 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton']) && !e
 
     $has_tasks = false;
     $tasks_path = __DIR__ . '/data/tasks.txt';
-    if (file_exists($tasks_path)) {
-        $tasks = file($tasks_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        foreach ($tasks as $task_line) {
-            $t = json_decode($task_line, true);
-            if (isset($t['project']) && $t['project'] === $project_name_to_delete) {
-                $has_tasks = true;
-                break;
+    if (file_exists($projects_path)) {
+        $projects = file($projects_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($projects as $line) {
+            $decoded = json_decode($line, true);
+            if ($decoded) {
+                $projects_arr[] = $decoded;
             }
         }
     }

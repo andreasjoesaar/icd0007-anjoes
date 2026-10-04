@@ -5,14 +5,16 @@ $title = $project = $status = $due = $description = $priority = $complexity = $o
 
 
 if (file_exists($projects_file)) {
-    $projects = file($projects_file, FILE_SKIP_EMPTY_LINES | FILE_IGNORE_NEW_LINES);
-    foreach($projects as $json_line) {
-    if (json_decode($json_line,true)['name']) {
-        array_push($project_names, json_decode($json_line,true)['name']);
+        $projects = file($projects_file, FILE_SKIP_EMPTY_LINES | FILE_IGNORE_NEW_LINES);
+        foreach($projects as $json_line) {
+            $decoded = json_decode($json_line, true);
+            if ($decoded && isset($decoded['name'])) {
+                array_push($project_names, $decoded['name']);
+            }
+        }
     }
-}
 
-}
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     $edit = true;
     $task_idx = $_GET['id'];

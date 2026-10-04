@@ -19,12 +19,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton']) && !e
 }
 
 $tasks_arr = [];
-if (file_exists($tasks_path)) {
-    $tasks = file($tasks_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    foreach ($tasks as $line) {
-        $tasks_arr[] = json_decode($line, true);
+    if (file_exists($tasks_path)) {
+        $tasks = file($tasks_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($tasks as $line) {
+            $decoded = json_decode($line, true);
+            if ($decoded) {
+                $tasks_arr[] = $decoded;
+            }
+        }
     }
-}
 ?>
 <!doctype html>
 <html lang="et">
