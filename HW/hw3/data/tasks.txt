@@ -1,7 +1,3 @@
 {"title":"asdasdasd","project":"Next homework","description":"sadasdasdasdasd","status":"Active","priority":"Medium","due":"2026-11-12","complexity":"1","owner":"adsadasdasd"}
 {"title":"asdasdsadasd","project":"asdasdasdas","description":"asdsadasdsad","status":"Active","priority":"High","due":"2028-03-12","complexity":"2","owner":"adasdasdasdas"}
 {"title":"asdasdsadasd","project":"asdasdasdas","description":"asdsadasdsad","status":"Active","priority":"High","due":"2027-03-12","complexity":"2","owner":"adasdasdasdas"}
-{"title":"asdasdasd","project":"Next homework","description":"sadasdasdasdasd","status":"Active","priority":"Medium","due":"2026-11-12","complexity":"1","owner":"adsadasdasd"}
-{"title":"asdasdasd","project":"Next homework","description":"sadasdasdasdasd","status":"Active","priority":"Medium","due":"2026-11-12","complexity":"1","owner":"adsadasdasd"}
-{"title":"asdasdasd","project":"Next homework","description":"sadasdasdasdasd","status":"Active","priority":"Medium","due":"2026-11-12","complexity":"1","owner":"adsadasdasd"}
-{"title":"asdasdasd","project":"Next homework","description":"sadasdasdasdasd","status":"Active","priority":"Medium","due":"2026-11-12","complexity":"1","owner":"adsadasdasd"}
