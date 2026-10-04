@@ -89,9 +89,7 @@ include('header.php')
         <?php endif?>
         <?php foreach ($projects_arr as $project): ?>
             <tr>
-                <td data-project-id="<?php echo htmlspecialchars($project['id'] ?? ''); ?>"> 
-                    <?php echo htmlspecialchars($project['name'] ?? ''); ?> 
-                </td>
+                <td data-project-id="<?php echo htmlspecialchars($project['id'] ?? ''); ?>"> <?php echo htmlspecialchars($project['name'] ?? ''); ?> </td>
                 <td> <?php echo htmlspecialchars($project['status'] ?? ''); ?> </td>
                 <td> <?php echo htmlspecialchars($project['deadline'] ?? ''); ?> </td>
                 <td> <?php echo htmlspecialchars($project['priority'] ?? ''); ?> </td>

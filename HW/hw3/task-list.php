@@ -66,9 +66,7 @@ include('header.php')
                             <?php echo $task['task-id'] ?>
                         </td>
                         -->
-                    <td>
-                        <?php echo $task['title'] ?>
-                    </td>
+                    <td data-task-id="<?php echo htmlspecialchars($task['id'] ?? ''); ?>"> <?php echo htmlspecialchars($task['title'] ?? ''); ?> </td>
                     <td>
                         <?php echo $task['project'] ?>
                     </td>
@@ -95,7 +93,7 @@ include('header.php')
                             id="task-edit-link-<?php echo htmlspecialchars($task['id'] ?? ''); ?>">Edit</a>
                     </td>
                     <td>
-                        <form method="post" style="margin: 0;">
+                        <form method="post">
                             <input type="hidden" name="deleteId" value="<?php echo htmlspecialchars($task['id'] ?? ''); ?>">
                             <button type="submit" class="delete-button" name="deleteButton" value="delete">Delete</button>
                         </form>
