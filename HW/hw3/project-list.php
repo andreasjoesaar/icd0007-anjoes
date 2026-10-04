@@ -105,7 +105,7 @@ include('header.php')
                 <td>
                     <form method="post" style="margin: 0;">
                         <input type="hidden" name="deleteId" value="<?php echo htmlspecialchars($project['id'] ?? ''); ?>">
-                        <button type="submit" class="delete-button" name="deleteButton" onclick="return confirm('Are you sure?')">Delete</button>
+                        <button type="submit" class="delete-button" name="deleteButton" value="delete" onclick="return confirm('Are you sure?')">Delete</button>
                     </form>
                 </td>
             </tr>
