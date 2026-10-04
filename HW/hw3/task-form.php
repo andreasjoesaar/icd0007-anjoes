@@ -3,7 +3,6 @@ $project_names = [];
 $projects_file = __DIR__. '/data/projects.txt';
 $title = $project = $status = $due = $description = $priority = $complexity = $owner = "";
 
-
 if (file_exists($projects_file)) {
         $projects = file($projects_file, FILE_SKIP_EMPTY_LINES | FILE_IGNORE_NEW_LINES);
         foreach($projects as $json_line) {
@@ -139,6 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tasks_path = __DIR__ . '/data/tasks.txt';
     $edit_id = $_POST['id'] ?? $_GET['id'] ?? null;
     if (!$errors) {
+        $success = "Yes";
         $task_arr = array(
             'title' => $title,
             'project' => $project,
@@ -200,6 +200,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php echo $error ?>
             </p>
         <?php endforeach ?>
+    </div>
+
+    <div class="message-block" id= "message-block">
+        <?php echo $success ?? ""?>
     </div>
     <form id="task-form" method="post" action="task-form.php<?php echo isset($_GET['id']) ? '?id=' . urlencode($_GET['id']) : ''; ?>">
     <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id'] ?? $_POST['id'] ?? ''); ?>">
