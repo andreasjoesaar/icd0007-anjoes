@@ -120,12 +120,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>
             Featured
             <div>
-                <input type="radio" name="featured" id="project-featured" value="">
-                <label> Yes</label>
+                <input type="radio" name="featured" id="project-featured" <?php if (isset($_POST['featured']) && $_POST['featured']=="yes") echo "checked";?> value="yes">
+                <label> yes</label>
             </div>
             <div>
-                <input type="radio" name="featured" id="project-featured" value="">
-                <label> No</label>
+                <input type="radio" name="featured" id="project-featured" <?php if (isset($_POST['featured']) && $_POST['featured']=="no") echo "checked";?> value="no">
+                <label> no</label>
             </div>
 
         </div>
