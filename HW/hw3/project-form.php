@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     $projects_path = '/data/projects.txt';
-    $projects_path_full = __DIR__ . '/data/projects.txt';
+    $projects_path_full = '/data/projects.txt';
     
     if (empty($errors)) {
         $project_arr = array(
@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             file_put_contents($projects_path_full, json_encode($project_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
         }
 
-        header("Location: /project-list.php");
+        header("Location: project-list.php");
         exit();
     }
 }
