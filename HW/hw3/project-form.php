@@ -151,11 +151,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id'] ?? $_POST['id'] ?? ''); ?>">
         <div>
             Title
-            <input type="text" id="project-name" name="name" value="<?php echo htmlspecialchars($name, ENT_QUOTES, 'UTF-8'); ?>">        </div>
+            <input type="text" id="project-name" name="name" value="<?php echo htmlspecialchars($name, ENT_QUOTES, 'UTF-8'); ?>">        
+        </div>
 
         <div>
             Description
-            <textarea id="project-description" name="description"><?php echo $description ?></textarea>
+            <textarea id="project-description" name="description"><?php echo htmlspecialchars($description, ENT_QUOTES, 'UTF-8') ?></textarea>
         </div>
 
         <div>
@@ -190,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>
             Priority
             <select id="project-priority" name="priority">
-                <option value="<?php echo $priority ?>"><?php echo $priority ?></option>
+                <option value="<?php echo htmlspecialchars($priority, ENT_QUOTES, 'UTF-8') ?>"><?php echo htmlspecialchars($priority, ENT_QUOTES, 'UTF-8') ?></option>
                 <option value="High">High</option>
                 <option value="Medium">Medium</option>
                 <option value="Low">Low</option>
