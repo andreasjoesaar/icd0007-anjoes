@@ -60,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton']) && !e
     <title>HW 3 | Project List</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
-
 <body id="project-list-page">
     <?php include('header.php') ?>
     <?php
