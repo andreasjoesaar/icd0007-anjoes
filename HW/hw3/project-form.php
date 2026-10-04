@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         );
 
         $updated = false;
-        if ($edit_id && file_exists($projects_path_full)) {
+        if (!empty($edit_id) && file_exists($projects_path_full)) {
             $new_file_contents = [];
             $old_project_name = ""; 
             
