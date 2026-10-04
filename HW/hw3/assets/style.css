@@ -11,7 +11,7 @@ body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.overview-blocks {
+#overview-blocks {
     padding: 1rem;
     border: 1px solid black;
     display: flex;
@@ -31,7 +31,19 @@ button {
     background-color: azure;
     transition-duration: 0.2s;
 }
+
+.delete-button {
+    color: rgb(153, 2, 2);
+    background-color: rgb(254, 207, 207);
+    transition-duration: 0.2s;
+}
+
+.delete-button:hover {
+    background-color: rgb(255, 104, 99);
+}
+
 button:hover {
-    background-color: rgb(205, 209, 209);
+    background-color: rgb(152, 181, 181);
+    color:rgb(255, 255, 254);
     cursor: pointer;
 }

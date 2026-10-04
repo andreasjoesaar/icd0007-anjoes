@@ -4,7 +4,10 @@ try {
     $tasks_arr = [];
     foreach ($tasks as $json_line) {
         array_push($tasks_arr, json_decode($json_line, true));
+        
     }
+
+    //if ($_GET['edit'])
 } catch (Exception $e) {
     echo "Unable to open file" . $e->getMessage() . PHP_EOL;
 }
@@ -65,6 +68,12 @@ try {
                     </td>
                     <td>
                         <?php echo $task['owner'] ?>
+                    </td>
+                    <td>
+                        <button type="submit" name="editButton" value="edit">Edit</button>
+                    </td>
+                    <td>
+                        <button class= "delete-button" type="submit" name="deleteId" onclick="return confirm('Are you sure you wish to delete this post?')">Delete</button>
                     </td>
                 </tr>
             <?php endforeach ?>
