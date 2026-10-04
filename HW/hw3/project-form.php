@@ -56,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $featured = (isset($_POST['featured']) && $_POST['featured'] === 'yes') ? 'yes' : 'no';
 
 
-    $projects_path = '/data/projects.txt';
     $projects_path_full = __DIR__ . '/data/projects.txt';
     
     if (empty($errors)) {
@@ -90,7 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
             
-            // Fallback: if edit_id was provided but somehow not found in the file, append it so data isn't lost
             if (!$updated) {
                 $new_file_contents[] = json_encode($project_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL;
             }
@@ -153,8 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id'] ?? $_POST['id'] ?? ''); ?>">
         <div>
             Title
-            <input type="text" id="project-name" name="name" value="<?php echo $name ?>">
-        </div>
+            <input type="text" id="project-name" name="name" value="<?php echo htmlspecialchars($name, ENT_QUOTES, 'UTF-8'); ?>">        </div>
 
         <div>
             Description
