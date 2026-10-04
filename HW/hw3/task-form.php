@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include('nav.php');
     ?>
     <h1> Task form</h1>
-    <block class="error-block">
+    <block class="error-block" id= "error-block">
         <?php foreach ($errors as $error): ?>
             <p>
                 <?php echo $error ?>
