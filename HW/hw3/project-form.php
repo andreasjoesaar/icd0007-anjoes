@@ -53,18 +53,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else
         $errors[] = 'Project priority is required';
 
-    if (!isset($_POST['featured']) || $_POST['featured'] == false) {
-        $featured = false;
-    } else {
-        $featured = true;
-    }
+    $featured = (isset($_POST['featured']) && $_POST['featured'] === 'yes') ? 'yes' : 'no';
 
 
     $projects_path = '/data/projects.txt';
     $projects_path_full = __DIR__ . '/data/projects.txt';
+    $edit_id = $_POST['id'] ?? $_GET['id'] ?? null;
     if (!$errors) {
         $project_arr = array(
-            'id' => isset($_GET['id']) ? $_GET['id'] : uniqid('proj_'), // Keep test ID or make new one
+            'id' => $edit_id ? $edit_id : uniqid('proj_'),
             'name' => $name,
             'description' => $description,
             'status' => $status,
@@ -73,12 +70,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'priority' => $priority
         );
 
-        if (isset($_GET['id']) && file_exists($projects_path_full)) {
+        if ($edit_id && file_exists($projects_path_full)) {
             $new_file_contents = [];
             $file_to_edit_as_arr = file($projects_path_full, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
             foreach ($file_to_edit_as_arr as $line) {
                 $decoded = json_decode($line, true);
-                if (isset($decoded['id']) && $decoded['id'] === $_GET['id']) {
+                if (isset($decoded['id']) && $decoded['id'] === $edit_id) {
                     $new_file_contents[] = json_encode($project_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL;
                 } else {
                     $new_file_contents[] = $line . PHP_EOL;
@@ -122,6 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <form id="project-form" method="post" action="project-form.php<?php echo isset($_GET['id']) ? '?id=' . urlencode($_GET['id']) : ''; ?>">
+    <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id'] ?? $_POST['id'] ?? ''); ?>">
         <div>
             Title
             <input type="text" id="project-name" name="name" value="<?php echo $name ?>">
