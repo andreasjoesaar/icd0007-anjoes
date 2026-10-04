@@ -136,21 +136,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     */
 
     $tasks_path = __DIR__ . '/data/tasks.txt';
+    $edit_id = $_POST['id'] ?? $_GET['id'] ?? null;
     if (!$errors) {
         $task_arr = array(
-            'title' => $title, 
-            'project' => $project, 
-            'description' => $description, 
+            'title' => $title,
+            'project' => $project,
+            'description' => $description,
             'status' => $status,
             'priority' => $priority,
             'due' => $due,
             'complexity' => $complexity,
             'owner' => $owner,
-            'id' => isset($_GET['id']) ? $_GET['id'] : uniqid('task_')
-            );
-        
-        
-        if (!isset($_GET['id'])) {
+            'id' => $edit_id ? $edit_id : uniqid('task_')
+        );
+
+        if (!$edit_id) {
             file_put_contents($tasks_path, json_encode($task_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
         } else {
             $new_file_contents = [];
@@ -158,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             foreach ($file_to_edit_as_arr as $line) {
                 $decoded = json_decode($line, true);
-                if (isset($decoded['id']) && $decoded['id'] === $_GET['id']) {
+                if (isset($decoded['id']) && $decoded['id'] === $edit_id) {
                     // This is the one we are editing, push the NEW data instead
                     // Make sure $task_arr includes the ID: $task_arr['id'] = $_GET['id'];
                     $new_file_contents[] = json_encode($task_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL;
@@ -203,6 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endforeach ?>
     </div>
     <form id="task-form" method="post" action="task-form.php<?php echo isset($_GET['id']) ? '?id=' . urlencode($_GET['id']) : ''; ?>">
+    <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id'] ?? $_POST['id'] ?? ''); ?>">
         <div>
             Task
             <input type="text" id="task-title" name="title" value="<?php echo $title ?>">
