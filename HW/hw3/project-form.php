@@ -6,10 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     if (file_exists($projects_path)) {
         $projects = file($projects_path, FILE_SKIP_EMPTY_LINES | FILE_IGNORE_NEW_LINES);
         foreach ($projects as $line) {
-            $clean_line = trim($line);
-            if (empty($clean_line)) continue;
-            
-            $decoded = json_decode($clean_line, true);
+            $decoded = json_decode($line, true);
             if (isset($decoded['id']) && $decoded['id'] === $_GET['id']) {
                 $name = $decoded['name'] ?? '';
                 $description = $decoded['description'] ?? '';
