@@ -15,7 +15,8 @@ try {
         foreach ($projects_arr as $project) {
             if ($project['project-id'] === $project_to_delete) {
                 $idx_to_delete = $project['project-id'];
-                delete($idx_to_delete);
+                $title_to_delete = $project['name'];
+                delete($idx_to_delete, $title_to_delete);
             }
         }
     }
@@ -28,10 +29,22 @@ function delete($index_to_delete, $title_to_delete)
         $projects_path = __DIR__ . '/data/projects.txt';
         $tasks_path = __DIR__ . '/data/tasks.txt';
         $projects = file($projects_path);
+        $tasks = file($tasks_path);
+        $has_tasks = false;
+
+        foreach($tasks as $task_json) {
+            $task_arr = json_decode($task_json, true);
+            if ($task_arr['project'] === $title_to_delete) {
+                $has_tasks = true;
+            }   
+        }
+
+        if (!$has_tasks) {
+            unset($projects[$index_to_delete]);
+            file_put_contents($projects_path, $projects);
+            header("Location: project-list.php");
+        }
         
-        unset($projects[$index_to_delete]);
-        file_put_contents($projects_path, $projects);
-        header("Location: projects-list.php");
     } catch (Exception $e) {
         echo "Unable to open file" . $e->getMessage() . PHP_EOL;
     }
@@ -57,13 +70,17 @@ include('header.php')
     ?>
     <table id="projects-table">
         <h3>Projects</h3>
+        <?php if ($projects_arr): ?>
         <tr>
             <th name="name">Name</th>
             <th>Status</th>
             <th>Deadline</th>
             <th>Priority</th>
         </tr>
-
+        
+        <?php else:?>
+        <p>No projects yet.</p>
+        <?php endif?>
         <?php
         foreach ($projects_arr as $project): ?>
             <form name="deleteId" method="post">
@@ -77,7 +94,7 @@ include('header.php')
                     </td>
                     <td>
                         <button type="submit" class="delete-button" name="deleteButton"
-                            value="<?php echo $task['project-id'] ?>">Delete</button>
+                            value="<?php echo $project['project-id'] ?>">Delete</button>
                     </td>
                 </tr>
             </form>
