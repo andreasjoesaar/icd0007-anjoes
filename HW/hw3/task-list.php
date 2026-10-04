@@ -102,7 +102,7 @@ include('header.php')
                             <?php echo $task['owner'] ?>
                         </td>
                         <td>
-                            <a href="task-form.php?id=<?php echo urlencode($task['task-id'])?>" id="task-edit-link-<?php echo $task['task-id']?>" >Edit</a>
+                            <a href="task-form.php?id=<?php echo urlencode($task['task-id'])?>" id="task-edit-link-edittask<?php echo $task['task-id']?>" >Edit</a>
                         </td>
                         <td>
                             <button type="submit" class="delete-button" name="deleteButton"
