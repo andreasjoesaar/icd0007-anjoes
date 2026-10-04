@@ -4,7 +4,7 @@ try {
     $tasks_arr = [];
     foreach ($tasks as $json_line) {
         array_push($tasks_arr, json_decode($json_line, true));
-        
+
     }
 
     //if ($_GET['edit'])
@@ -73,7 +73,7 @@ try {
                         <button type="submit" name="editButton" value="edit">Edit</button>
                     </td>
                     <td>
-                        <button class= "delete-button" type="submit" name="deleteId" onclick="return confirm('Are you sure you wish to delete this post?')">Delete</button>
+                        <button class= "delete-button" type="submit" name="deleteButton" onclick="return confirm('Are you sure you wish to delete this post?')">Delete</button>
                     </td>
                 </tr>
             <?php endforeach ?>
