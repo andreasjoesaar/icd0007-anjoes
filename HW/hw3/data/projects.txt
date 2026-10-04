@@ -1,1 +1,2 @@
 {"id":"proj_6ac2c3d115f92","name":"Korrektne pealkiri","description":"Korrektne jesus","status":"Done","deadline":"2028-02-22","featured":"no","priority":"Medium"}
+{"id":"proj_6ac2c3fe6a103","name":"JääbAlles","description":"Kirjeldus","status":"Active","deadline":"3000-02-23","featured":"no","priority":"Medium"}
