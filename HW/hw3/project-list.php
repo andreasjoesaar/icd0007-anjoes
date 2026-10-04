@@ -34,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton']) && !e
         }
     }
 
-    // 3. Delete or Error
     if (!$has_tasks) {
         $new_projects = [];
         foreach ($projects_arr as $p) {
@@ -44,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton']) && !e
         }
         file_put_contents($projects_path, implode("", $new_projects));
         header("Location: project-list.php");
-        exit(); // Crucial to prevent header errors
+        exit(); 
     } else {
         $errors[] = "Cannot delete project with one or more tasks";
     }

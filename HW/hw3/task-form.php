@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($_POST['title'])) {
         $errors[] = 'Task title is required';
-    } else if (strlen($_POST['title']) <= 5 || strlen($_POST['title']) > 25) {
+    } else if (strlen($_POST['title']) < 5 || strlen($_POST['title']) > 25) {
         $errors[] = 'Task title must be between 5 and 25 chars';
     }
     $title = $_POST['title'];
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($_POST['description'])) {
         $errors[] = 'Task decription is required';
-    } else if (strlen($_POST['description']) <= 5 || strlen($_POST['description']) > 40) {
+    } else if (strlen($_POST['description']) < 5 || strlen($_POST['description']) > 40) {
         $errors[] = 'Task description must be between 5 and 40 chars';
     }
     $description = $_POST['description'];
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($_POST['owner'])) {
         $errors[] = 'Task owner is required';
-    } else if (strlen($_POST['owner']) <= 2 || strlen($_POST['owner']) > 22) {
+    } else if (strlen($_POST['owner']) < 2 || strlen($_POST['owner']) > 22) {
         $errors[] = 'Task owner must be between 5 and 40 chars';
     }
     $owner = $_POST['owner'];

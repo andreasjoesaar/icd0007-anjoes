@@ -24,14 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($_POST['name'])) {
         $errors[] = 'Project title is required';
-    } else if (strlen($_POST['name']) <= 5 || strlen($_POST['name']) > 25) {
+    } else if (strlen($_POST['name']) < 5 || strlen($_POST['name']) > 25) {
         $errors[] = 'Project title must be between 5 and 25 chars';
     }
     $name = $_POST['name'];
 
     if (empty($_POST['description'])) {
         $errors[] = 'Project decription is required';
-    } else if (strlen($_POST['description']) <= 5 || strlen($_POST['description']) > 40) {
+    } else if (strlen($_POST['description']) < 5 || strlen($_POST['description']) > 40) {
         $errors[] = 'Project description must be between 5 and 40 chars';
     }
     $description = $_POST['description'];
