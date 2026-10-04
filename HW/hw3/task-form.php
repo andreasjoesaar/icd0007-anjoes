@@ -181,17 +181,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!doctype html>
 <html lang="et">
-<head id = "page-header">
+<head>
     <meta charset="UTF-8">
     <title>HW 3 | Task Form</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
-
-<?php
-    include('header.php')
-?>
-
 <body id="task-form-page">
+    <?php
+    include('header.php')
+    ?>
     <?php 
     include('nav.php');
     ?>

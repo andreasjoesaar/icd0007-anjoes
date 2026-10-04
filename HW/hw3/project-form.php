@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             file_put_contents($projects_path_full, json_encode($project_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
         }
-        
+
         header('Location: project-list.php');
         exit();
     }
@@ -94,23 +94,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!doctype html>
 <html lang="et">
 
-<head id="page-header">
+<head>
     <meta charset="UTF-8">
     <title>HW 3 | Project Form</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
-
-<?php
-    include('header.php')
-?>
-
 <body id="project-form-page">
+    <?php include('header.php') ?>
     <?php
     include('nav.php');
     ?>
     <h1> Project form</h1>
 
-    <div class="error-block" id= "error-block">
+    <div class="error-block" id="error-block">
         <?php foreach ($errors as $error): ?>
             <p>
                 <?php echo $error ?>
@@ -118,8 +114,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endforeach ?>
     </div>
 
-    <form id="project-form" method="post" action="project-form.php<?php echo isset($_GET['id']) ? '?id=' . urlencode($_GET['id']) : ''; ?>">
-    <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id'] ?? $_POST['id'] ?? ''); ?>">
+    <form id="project-form" method="post"
+        action="project-form.php<?php echo isset($_GET['id']) ? '?id=' . urlencode($_GET['id']) : ''; ?>">
+        <input type="hidden" name="id" value="<?php echo htmlspecialchars($_GET['id'] ?? $_POST['id'] ?? ''); ?>">
         <div>
             Title
             <input type="text" id="project-name" name="name" value="<?php echo $name ?>">
@@ -148,11 +145,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>
             Featured
             <div>
-                <input type="radio" name="featured" id="project-featured-yes" <?php if ($featured === true || $featured === "yes") echo "checked";?> value="yes">
+                <input type="radio" name="featured" id="project-featured-yes" <?php if ($featured === true || $featured === "yes")
+                    echo "checked"; ?> value="yes">
                 <label> yes</label>
             </div>
             <div>
-                <input type="radio" name="featured" id="project-featured-no" <?php if ($featured === false || $featured === "no" || $featured === "") echo "checked";?> value="no">
+                <input type="radio" name="featured" id="project-featured-no" <?php if ($featured === false || $featured === "no" || $featured === "")
+                    echo "checked"; ?> value="no">
                 <label> no</label>
             </div>
 

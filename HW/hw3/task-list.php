@@ -35,17 +35,16 @@ if (file_exists($tasks_path)) {
 <!doctype html>
 <html lang="et">
 
-<head id="page-header">
+<head>
     <meta charset="UTF-8">
     <title>HW 3 | Task List</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
-<?php
-include('header.php')
-    ?>
-
 <body id="task-list-page">
+    <?php
+    include('header.php')
+        ?>
     <?php
     include('nav.php');
     ?>
@@ -68,7 +67,8 @@ include('header.php')
             foreach ($tasks_arr as $task): ?>
                 <tr>
                     <td data-task-id="<?php echo htmlspecialchars($task['id'] ?? ''); ?>">
-                        <?php echo htmlspecialchars($task['title'] ?? ''); ?> </td>
+                        <?php echo htmlspecialchars($task['title'] ?? ''); ?>
+                    </td>
                     <td>
                         <?php echo $task['project'] ?>
                     </td>

@@ -13,7 +13,7 @@ if (file_exists($projects_path)) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton']) && !empty($_POST['deleteId'])) {
     $id_to_delete = $_POST['deleteId'];
     $project_name_to_delete = "";
-    
+
     foreach ($projects_arr as $p) {
         if (isset($p['id']) && $p['id'] === $id_to_delete) {
             $project_name_to_delete = $p['name'] ?? '';
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton']) && !e
         }
         file_put_contents($projects_path, implode("", $new_projects));
         header("Location: project-list.php");
-        exit(); 
+        exit();
     } else {
         $errors[] = "Cannot delete project with one or more tasks";
     }
@@ -55,21 +55,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton']) && !e
 <!doctype html>
 <html lang="et">
 
-<head id="page-header">
+<head>
     <meta charset="UTF-8">
     <title>HW 3 | Project List</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
-<?php
-include('header.php')
-    ?>
-
 <body id="project-list-page">
+    <?php include('header.php') ?>
     <?php
     include('nav.php');
     ?>
-    <div class="error-block" id= "error-block">
+    <div class="error-block" id="error-block">
         <?php foreach ($errors as $error): ?>
             <p>
                 <?php echo $error ?>
@@ -79,30 +76,32 @@ include('header.php')
     <table id="projects-table">
         <h3>Projects</h3>
         <?php if ($projects_arr): ?>
-        <tr>
-            <th name="name">Name</th>
-            <th>Status</th>
-            <th>Deadline</th>
-            <th>Priority</th>
-        </tr>
-        
-        <?php else:?>
-        <p>No projects yet.</p>
-        <?php endif?>
+            <tr>
+                <th name="name">Name</th>
+                <th>Status</th>
+                <th>Deadline</th>
+                <th>Priority</th>
+            </tr>
+
+        <?php else: ?>
+            <p>No projects yet.</p>
+        <?php endif ?>
         <?php foreach ($projects_arr as $project): ?>
             <tr>
-                <td data-project-id="<?php echo htmlspecialchars($project['id'] ?? ''); ?>"> <?php echo htmlspecialchars($project['name'] ?? ''); ?> </td>
+                <td data-project-id="<?php echo htmlspecialchars($project['id'] ?? ''); ?>">
+                    <?php echo htmlspecialchars($project['name'] ?? ''); ?> </td>
                 <td> <?php echo htmlspecialchars($project['status'] ?? ''); ?> </td>
                 <td> <?php echo htmlspecialchars($project['deadline'] ?? ''); ?> </td>
                 <td> <?php echo htmlspecialchars($project['priority'] ?? ''); ?> </td>
                 <td>
-                    <a href="project-form.php?id=<?php echo urlencode($project['id'] ?? ''); ?>" 
-                       id="project-edit-link-<?php echo htmlspecialchars($project['id'] ?? ''); ?>">Edit</a>
+                    <a href="project-form.php?id=<?php echo urlencode($project['id'] ?? ''); ?>"
+                        id="project-edit-link-<?php echo htmlspecialchars($project['id'] ?? ''); ?>">Edit</a>
                 </td>
                 <td>
                     <form method="post">
                         <input type="hidden" name="deleteId" value="<?php echo htmlspecialchars($project['id'] ?? ''); ?>">
-                        <button type="submit" class="delete-button" name="deleteButton" value="delete" onclick="return confirm('Are you sure?')">Delete</button>
+                        <button type="submit" class="delete-button" name="deleteButton" value="delete"
+                            onclick="return confirm('Are you sure?')">Delete</button>
                     </form>
                 </td>
             </tr>
