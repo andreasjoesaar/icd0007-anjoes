@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
 }
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+    $edit_id = $_POST['id'] ?? $_GET['id'] ?? null;
     if (empty($_POST['name'])) {
         $errors[] = 'Project title is required';
     } else if (strlen($_POST['name']) < 5 || strlen($_POST['name']) > 25) {
@@ -58,7 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $projects_path = '/data/projects.txt';
     $projects_path_full = __DIR__ . '/data/projects.txt';
-    $edit_id = $_POST['id'] ?? $_GET['id'] ?? null;
     if (!$errors) {
         $project_arr = array(
             'id' => $edit_id ? $edit_id : uniqid('proj_'),
