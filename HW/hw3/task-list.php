@@ -70,49 +70,45 @@ include('header.php')
             <?php endif ?>
             <?php
             foreach ($tasks_arr as $task): ?>
-
-                <tr>
-                    <!--
+                <form name="deleteId" method="post">
+                    <tr>
+                        <!--
                         <td >
                             <?php echo $task['task-id'] ?>
                         </td>
                         -->
-                    <td data-task-id="<?php echo $task['task-id']; ?>">
-
-                        <?php echo $task['title'] ?>
-                    </td>
-                    <td>
-                        <?php echo $task['project'] ?>
-                    </td>
-                    <td>
-                        <?php echo $task['description'] ?>
-                    </td>
-                    <td>
-                        <?php echo $task['status'] ?>
-                    </td>
-                    <td>
-                        <?php echo $task['priority'] ?>
-                    </td>
-                    <td>
-                        <?php echo $task['due'] ?>
-                    </td>
-                    <td>
-                        <?php echo $task['complexity'] ?>
-                    </td>
-                    <td>
-                        <?php echo $task['owner'] ?>
-                    </td>
-                    <td>
-                        <a href="task-form.php?id=<?php echo urlencode($task['task-id']) ?>"
-                            id="task-edit-link-edittask<?php echo $task['task-id'] + 1 ?>">Edit</a>
-                    </td>
-                    <td>
-                        <form name="deleteId" method="post">
+                        <td>
+                            <?php echo $task['title'] ?>
+                        </td>
+                        <td>
+                            <?php echo $task['project'] ?>
+                        </td>
+                        <td>
+                            <?php echo $task['description'] ?>
+                        </td>
+                        <td>
+                            <?php echo $task['status'] ?>
+                        </td>
+                        <td>
+                            <?php echo $task['priority'] ?>
+                        </td>
+                        <td>
+                            <?php echo $task['due'] ?>
+                        </td>
+                        <td>
+                            <?php echo $task['complexity'] ?>
+                        </td>
+                        <td>
+                            <?php echo $task['owner'] ?>
+                        </td>
+                        <td>
+                            <a href="task-form.php?id=<?php echo urlencode($task['task-id'])?>" id="task-edit-link-edittask<?php echo $task['task-id']+1?>" >Edit</a>
+                        </td>
+                        <td>
                             <button type="submit" class="delete-button" name="deleteButton"
                                 value="<?php echo $task['task-id'] ?>">Delete</button>
-                        <form name="deleteId" method="post"></form>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
                 </form>
             <?php endforeach ?>
         </table>

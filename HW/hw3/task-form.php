@@ -18,18 +18,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     $task_idx = $_GET['id'];
     $tasks_path = __DIR__ . '/data/tasks.txt';
     $tasks = file($tasks_path);
-    
-    $task_to_edit = json_decode($tasks[$task_idx], true);
-    
-    $title = $task_to_edit['title'];
-    $project = $task_to_edit['project']; 
-    $description = $task_to_edit['description'];
-    $status = $task_to_edit['status'];
-    $priority = $task_to_edit['priority'];
-    $due = $task_to_edit['due'];
-    $complexity = $task_to_edit['complexity'];
-    $owner = $task_to_edit['owner']; 
-    
+
+    $task_to_edit = [];
+    foreach ($tasks as $line) {
+        $decoded = json_decode($line, true);
+        // If the task has an ID and it matches the URL, grab it and stop looking
+        if (isset($decoded['id']) && $decoded['id'] === $_GET['id']) {
+            $task_to_edit = $decoded;
+            break;
+        }
+    }
+
+    if (!empty($task_to_edit)) {
+        $title = $task_to_edit['title'] ?? '';
+        $project = $task_to_edit['project'] ?? '';
+        $description = $task_to_edit['description'] ?? '';
+        $status = $task_to_edit['status'] ?? '';
+        $priority = $task_to_edit['priority'] ?? '';
+        $due = $task_to_edit['due'] ?? '';
+        $complexity = $task_to_edit['complexity'] ?? '';
+        $owner = $task_to_edit['owner'] ?? '';
+    }
 }
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -136,20 +145,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'priority' => $priority,
             'due' => $due,
             'complexity' => $complexity,
-            'owner' => $owner
+            'owner' => $owner,
+            'id' => isset($_GET['id']) ? $_GET['id'] : uniqid('task_')
             );
         
         
         if (!isset($_GET['id'])) {
             file_put_contents($tasks_path, json_encode($task_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
-        } else  {
-            $file_to_edit_as_arr = file($tasks_path);
-            $file_to_edit_as_arr[$_GET['id']] = json_encode($task_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL;
-            $tasks_file = fopen($tasks_path, "w");
-            foreach($file_to_edit_as_arr as $line) {
-                fwrite($tasks_file, $line);
+        } else {
+            $new_file_contents = [];
+            $file_to_edit_as_arr = file($tasks_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+            foreach ($file_to_edit_as_arr as $line) {
+                $decoded = json_decode($line, true);
+                if (isset($decoded['id']) && $decoded['id'] === $_GET['id']) {
+                    // This is the one we are editing, push the NEW data instead
+                    // Make sure $task_arr includes the ID: $task_arr['id'] = $_GET['id'];
+                    $new_file_contents[] = json_encode($task_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL;
+                } else {
+                    // Not the one we are editing, keep the OLD line intact
+                    $new_file_contents[] = $line . PHP_EOL;
+                }
             }
-            fclose($tasks_file);
+            file_put_contents($tasks_path, implode("", $new_file_contents));
         }
         
         
@@ -184,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </p>
         <?php endforeach ?>
     </div>
-    <form id="task-form" method="post">
+    <form id="task-form" method="post" action="task-form.php<?php echo isset($_GET['id']) ? '?id=' . urlencode($_GET['id']) : ''; ?>">
         <div>
             Task
             <input type="text" id="task-title" name="title" value="<?php echo $title ?>">
