@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($edit_id && file_exists($projects_path_full)) {
             $new_file_contents = [];
-            $old_project_name = ""; // 1. Variable to hold the old name
+            $old_project_name = ""; 
             
             $file_to_edit_as_arr = file($projects_path_full, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
             foreach ($file_to_edit_as_arr as $line) {
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 $decoded = json_decode($clean_line, true);
                 if (isset($decoded['id']) && $decoded['id'] === $edit_id) {
-                    $old_project_name = $decoded['name'] ?? ''; // 2. Capture the old name before overwriting
+                    $old_project_name = $decoded['name'] ?? ''; 
                     $new_file_contents[] = json_encode($project_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL;
                 } else {
                     $new_file_contents[] = $clean_line . PHP_EOL;
@@ -89,7 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             file_put_contents($projects_path_full, implode("", $new_file_contents));
             
-            // 3. CASCADING UPDATE: If the name changed, update the tasks!
             if ($old_project_name !== "" && $old_project_name !== $name) {
                 $tasks_path = __DIR__ . '/data/tasks.txt';
                 if (file_exists($tasks_path)) {
@@ -100,7 +99,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         if (empty($t_clean)) continue;
                         
                         $t_decoded = json_decode($t_clean, true);
-                        // If this task belongs to the old project name, update it
                         if (isset($t_decoded['project']) && $t_decoded['project'] === $old_project_name) {
                             $t_decoded['project'] = $name; 
                         }
