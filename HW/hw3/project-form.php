@@ -27,29 +27,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else if (strlen($_POST['name']) < 5 || strlen($_POST['name']) > 25) {
         $errors[] = 'Project title must be between 5 and 25 chars';
     }
-    $name = $_POST['name'];
+    $name = trim($_POST['name'] ?? '');
 
     if (empty($_POST['description'])) {
         $errors[] = 'Project decription is required';
     } else if (strlen($_POST['description']) < 5 || strlen($_POST['description']) > 40) {
         $errors[] = 'Project description must be between 5 and 40 chars';
     }
-    $description = $_POST['description'];
+    $description = trim($_POST['description'] ?? '');
 
     if ($_POST['status'] == "") {
         $errors[] = 'Project status is required';
     }
-    $status = $_POST['status'];
+    $status = trim($_POST['status'] ?? '');
 
     if (empty($_POST['deadline'])) {
         $errors[] = 'Project deadline is required';
     } else if (!$edit_id && strtotime($_POST['deadline']) < strtotime('today')) {
         $errors[] = 'Project deadline cannot be earlier than today';
     }
-    $deadline = $_POST['deadline'];
+    $deadline = trim($_POST['deadline'] ?? '');
 
     if (!empty($_POST['priority'])) {
-        $priority = $_POST['priority'];
+        $priority = trim($_POST['priority'] ?? '');
     } else
         $errors[] = 'Project priority is required';
 
@@ -58,9 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $projects_path = '/data/projects.txt';
     $projects_path_full = __DIR__ . '/data/projects.txt';
-    if (!$errors) {
+    
+    if (empty($errors)) {
         $project_arr = array(
-            'id' => $edit_id ? $edit_id : uniqid('proj_'),
+            'id' => ($edit_id !== '') ? $edit_id : uniqid('proj_'),
             'name' => $name,
             'description' => $description,
             'status' => $status,
@@ -69,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'priority' => $priority
         );
 
-        if ($edit_id && file_exists($projects_path_full)) {
+        if ($edit_id !== '' && file_exists($projects_path_full)) {
             $new_file_contents = [];
             $old_project_name = ""; 
             
