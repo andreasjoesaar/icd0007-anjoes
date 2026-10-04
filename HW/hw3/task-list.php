@@ -14,8 +14,8 @@ try {
 
 <head id="page-header">
     <meta charset="UTF-8">
-    <title>HW 2 | Task List</title>
-
+    <title>HW 3 | Task List</title>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body id="task-list-page">
     <?php

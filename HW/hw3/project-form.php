@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head id="page-header">
     <meta charset="UTF-8">
-    <title>HW 2 | Project Form</title>
+    <title>HW 3 | Project Form</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 

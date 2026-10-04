@@ -32,7 +32,8 @@ try {
 
 <head id="page-header">
     <meta charset="UTF-8">
-    <title>HW 2</title>
+    <title>HW 3</title>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body id="dashboard-page">

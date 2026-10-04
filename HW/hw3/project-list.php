@@ -16,8 +16,8 @@ try {
 
 <head id="page-header">
     <meta charset="UTF-8">
-    <title>HW 2 | Project List</title>
-
+    <title>HW 3 | Project List</title>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body id="project-list-page">
