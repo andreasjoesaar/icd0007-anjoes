@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
 }
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+    $edit_id = $_POST['id'] ?? $_GET['id'] ?? null;
     if (empty($_POST['title'])) {
         $errors[] = 'Task title is required';
     } else if (strlen($_POST['title']) < 5 || strlen($_POST['title']) > 25) {
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($_POST['due'])) {
         $errors[] = 'Task due is required';
-    } else if (strtotime($_POST['due']) < strtotime('today')) {
+    } else if (!$edit_id && strtotime($_POST['due']) < strtotime('today')) {
         $errors[] = 'Task due cannot be earlier than today';
     }
     $due = $_POST['due'];
@@ -90,53 +90,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $owner = $_POST['owner'];
 
-    /* 
-    Need kõik validationid tuleks teha !empty()-ga
-    if (!empty($_POST['title'])) {
-        $title = $_POST['title'];
-    } else $errors[] = 'Task title is required';
-
-    if ($_POST['project']) {
-        $project = $_POST['project'];
-    } else $errors[] = 'Project description is required';
-
-    if ($_POST['description']) {
-        $description = $_POST['description'];
-    } else $errors[] = 'Task description is required';
-
-    if ($_POST['status']) {
-        $status = $_POST['status'];
-    } else $errors[] = 'Task status is required';
-
-    if ($_POST['priority']) {
-        $priority = $_POST['priority'];
-    } else $errors[] = 'Task priority is required';
-
-    if ($_POST['due']) {
-        $due = $_POST['due'];
-    } else $errors[] = 'Task due is required';
-
-    if ($_POST['complexity']) {
-        $complexity = $_POST['complexity'];
-    } else $errors[] = 'Task complexity is required';
-
-    if ($_POST['owner']) {
-        $owner = $_POST['owner'];
-    } else $errors[] = 'Task owner is required';
-    */
-    /*
-    $title = $_POST['title'] ?? "";
-    
-    $description = $_POST['description'] ?? "";
-    $status = $_POST['status'] ?? "";
-    $priority = $_POST['priority'] ?? "";
-    $due = $_POST['due'] ?? "";
-    $complexity = $_POST['complexity'] ?? "";
-    $owner = $_POST['owner'] ?? "";
-    */
-
     $tasks_path = __DIR__ . '/data/tasks.txt';
-    $edit_id = $_POST['id'] ?? $_GET['id'] ?? null;
+
     if (!$errors) {
         $success = "Yes";
         $task_arr = array(
