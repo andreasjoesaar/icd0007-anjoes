@@ -1,1 +1,1 @@
-{"title":"Korrektne ülesanne","project":"Korrektne pealkiri","description":"Kirjeldus","status":"Active","priority":"Medium","due":"2028-02-22","complexity":"2","owner":"Jeesus","id":"task_6ac2c3a3edab1"}
+{"title":"Teletornist allahüpp","project":"Korrektne pealkiri","description":"HJüpan alla","status":"Planning","priority":"High","due":"2029-02-22","complexity":"1","owner":"Jeesus","id":"task_6ac2c5609ede2"}
