@@ -14,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton']) && !e
     $id_to_delete = $_POST['deleteId'];
     $project_name_to_delete = "";
     
-    // 1. Find the project name for validation
     foreach ($projects_arr as $p) {
         if (isset($p['id']) && $p['id'] === $id_to_delete) {
             $project_name_to_delete = $p['name'] ?? '';
@@ -22,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton']) && !e
         }
     }
 
-    // 2. Check if tasks are using this project
     $has_tasks = false;
     $tasks_path = __DIR__ . '/data/tasks.txt';
     if (file_exists($tasks_path)) {
@@ -103,7 +101,7 @@ include('header.php')
                        id="project-edit-link-<?php echo htmlspecialchars($project['id'] ?? ''); ?>">Edit</a>
                 </td>
                 <td>
-                    <form method="post" style="margin: 0;">
+                    <form method="post">
                         <input type="hidden" name="deleteId" value="<?php echo htmlspecialchars($project['id'] ?? ''); ?>">
                         <button type="submit" class="delete-button" name="deleteButton" value="delete" onclick="return confirm('Are you sure?')">Delete</button>
                     </form>

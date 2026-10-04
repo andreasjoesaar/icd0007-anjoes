@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($_POST['due'])) {
         $errors[] = 'Task due is required';
-    } else if (strtotime($_POST['due']) < time()) {
+    } else if (strtotime($_POST['due']) < strtotime('today')) {
         $errors[] = 'Task due cannot be earlier than today';
     }
     $due = $_POST['due'];

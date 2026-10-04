@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($_POST['deadline'])) {
         $errors[] = 'Project deadline is required';
-    } else if (strtotime($_POST['deadline']) < time()) {
+    } else if (strtotime($_POST['deadline']) < strtotime('today')) {
         $errors[] = 'Project deadline cannot be earlier than today';
     }
     $deadline = $_POST['deadline'];
@@ -59,13 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $featured = true;
     }
 
-    /*
-    $name = $_POST['name'] ?? '';
-    $description = $_POST['description'] ?? '';
-    $status = $_POST['status'] ?? '';
-    $deadline = $_POST['deadline'] ?? '';
-    $priority = $_POST['priority'] ?? '';
-    */
 
     $projects_path = '/data/projects.txt';
     $projects_path_full = __DIR__ . '/data/projects.txt';
@@ -81,7 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         );
 
         if (isset($_GET['id']) && file_exists($projects_path_full)) {
-            // EDITING: Scan and replace the specific line
             $new_file_contents = [];
             $file_to_edit_as_arr = file($projects_path_full, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
             foreach ($file_to_edit_as_arr as $line) {
@@ -94,7 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             file_put_contents($projects_path_full, implode("", $new_file_contents));
         } else {
-            // ADDING: Just append to the end
             file_put_contents($projects_path_full, json_encode($project_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
         }
         
