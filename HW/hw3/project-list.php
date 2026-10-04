@@ -1,56 +1,54 @@
 <?php
 $errors = [];
-try {
-    $projects = file(__DIR__ . '/data/projects.txt');
-    $projects_arr = [];
-    $project_idx = 0;
-    foreach ($projects as $json_line) {
-        $json_arr = json_decode($json_line, true);
-        $json_arr['project-id'] = $project_idx;
-        $project_idx++;
-        array_push($projects_arr, $json_arr);
+$projects_arr = [];
+$projects_path = __DIR__ . '/data/projects.txt';
+
+if (file_exists($projects_path)) {
+    $projects = file($projects_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($projects as $line) {
+        $projects_arr[] = json_decode($line, true);
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton']) && !empty($_POST['deleteId'])) {
+    $id_to_delete = $_POST['deleteId'];
+    $project_name_to_delete = "";
+    
+    // 1. Find the project name for validation
+    foreach ($projects_arr as $p) {
+        if (isset($p['id']) && $p['id'] === $id_to_delete) {
+            $project_name_to_delete = $p['name'] ?? '';
+            break;
+        }
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton'])) {
-        $project_to_delete = intval($_POST['deleteButton']);
-        foreach ($projects_arr as $project) {
-            if ($project['project-id'] === $project_to_delete) {
-                $idx_to_delete = $project['project-id'];
-                $title_to_delete = $project['name'];
-                delete($idx_to_delete, $title_to_delete);
+    // 2. Check if tasks are using this project
+    $has_tasks = false;
+    $tasks_path = __DIR__ . '/data/tasks.txt';
+    if (file_exists($tasks_path)) {
+        $tasks = file($tasks_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($tasks as $task_line) {
+            $t = json_decode($task_line, true);
+            if (isset($t['project']) && $t['project'] === $project_name_to_delete) {
+                $has_tasks = true;
+                break;
             }
         }
     }
-} catch (Exception $e) {
-    echo "Unable to open file" . $e->getMessage() . PHP_EOL;
-}
 
-function delete($index_to_delete, $title_to_delete)
-{
-    try {
-        $projects_path = __DIR__ . '/data/projects.txt';
-        $tasks_path = __DIR__ . '/data/tasks.txt';
-        $projects = file($projects_path);
-        $tasks = file($tasks_path);
-        $has_tasks = false;
-
-        foreach($tasks as $task_json) {
-            $task_arr = json_decode($task_json, true);
-            if ($task_arr['project'] === $title_to_delete) {
-                $has_tasks = true;
-            }   
+    // 3. Delete or Error
+    if (!$has_tasks) {
+        $new_projects = [];
+        foreach ($projects_arr as $p) {
+            if (!isset($p['id']) || $p['id'] !== $id_to_delete) {
+                $new_projects[] = json_encode($p, JSON_UNESCAPED_UNICODE) . PHP_EOL;
+            }
         }
-
-        if (!$has_tasks) {
-            unset($projects[$index_to_delete]);
-            file_put_contents($projects_path, $projects);
-            header("Location: project-list.php");
-        } else {
-            $GLOBALS['errors'][] = "Cannot delete project with one or more tasks";
-        }
-        
-    } catch (Exception $e) {
-        echo "Unable to open file" . $e->getMessage() . PHP_EOL;
+        file_put_contents($projects_path, implode("", $new_projects));
+        header("Location: project-list.php");
+        exit(); // Crucial to prevent header errors
+    } else {
+        $errors[] = "Cannot delete project with one or more tasks";
     }
 }
 
@@ -92,23 +90,25 @@ include('header.php')
         <?php else:?>
         <p>No projects yet.</p>
         <?php endif?>
-        <?php
-        foreach ($projects_arr as $project): ?>
-            <form name="deleteId" method="post">
-                <tr>
-                    <td> <?php echo $project['name'] ?> </td>
-                    <td> <?php echo $project['status'] ?> </td>
-                    <td> <?php echo $project['deadline'] ?> </td>
-                    <td> <?php echo $project['priority'] ?> </td>
-                    <td>
-                        <button type="submit" name="editButton" value="edit">Edit</button>
-                    </td>
-                    <td>
-                        <button type="submit" class="delete-button" name="deleteButton"
-                            value="<?php echo $project['project-id'] ?>">Delete</button>
-                    </td>
-                </tr>
-            </form>
+        <?php foreach ($projects_arr as $project): ?>
+            <tr>
+                <td data-project-id="<?php echo htmlspecialchars($project['id'] ?? ''); ?>"> 
+                    <?php echo htmlspecialchars($project['name'] ?? ''); ?> 
+                </td>
+                <td> <?php echo htmlspecialchars($project['status'] ?? ''); ?> </td>
+                <td> <?php echo htmlspecialchars($project['deadline'] ?? ''); ?> </td>
+                <td> <?php echo htmlspecialchars($project['priority'] ?? ''); ?> </td>
+                <td>
+                    <a href="project-form.php?id=<?php echo urlencode($project['id'] ?? ''); ?>" 
+                       id="project-edit-link-<?php echo htmlspecialchars($project['id'] ?? ''); ?>">Edit</a>
+                </td>
+                <td>
+                    <form method="post" style="margin: 0;">
+                        <input type="hidden" name="deleteId" value="<?php echo htmlspecialchars($project['id'] ?? ''); ?>">
+                        <button type="submit" class="delete-button" name="deleteButton" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
         <?php endforeach ?>
     </table>
     <?php

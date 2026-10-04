@@ -231,13 +231,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>
             Priority
             <select id="task-priority" name="priority">
-                <option value="<?php echo $priority ?>"><?php echo $priority ?></option>
-                <option>Low</option>
-                <option>Medium</option>
-                <option>High</option>
+                <option value="">Select Priority</option>
+                <option value="Low" <?php if ($priority === 'Low') echo 'selected'; ?>>Low</option>
+                <option value="Medium" <?php if ($priority === 'Medium') echo 'selected'; ?>>Medium</option>
+                <option value="High" <?php if ($priority === 'High') echo 'selected'; ?>>High</option>
             </select>
         </div>
-
+        
         <div>
             Due
             <input type="date" id="task-due" name="due" value="<?php echo $due ?>">
