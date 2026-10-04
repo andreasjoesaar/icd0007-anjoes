@@ -125,7 +125,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: task-list.php');
         exit();
     }
-}   
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
+    $task_idx = $_GET['id'];
+    $tasks_path = __DIR__ . '/data/tasks.txt';
+    $tasks = file($tasks_path);
+    
+    $task_to_edit = json_decode($tasks[$task_idx], true);
+    
+    $title = $task_to_edit['title'];
+    $project = $task_to_edit['project']; 
+    $description = $task_to_edit['description'];
+    $status = $task_to_edit['status'];
+    $priority = $task_to_edit['priority'];
+    $due = $task_to_edit['due'];
+    $complexity = $task_to_edit['complexity'];
+    $owner = $task_to_edit['owner']; 
+    
+}
 ?>
 <!doctype html>
 <html lang="et">
