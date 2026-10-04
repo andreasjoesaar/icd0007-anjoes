@@ -120,11 +120,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>
             Featured
             <div>
-                <input type="radio" name="project-featured" id="project-featured" value="">
+                <input type="radio" name="featured" id="project-featured" value="">
                 <label> Yes</label>
             </div>
             <div>
-                <input type="radio" name="project-featured" id="project-featured" value="">
+                <input type="radio" name="featured" id="project-featured" value="">
                 <label> No</label>
             </div>
 
