@@ -1,3 +1,37 @@
-.error-block {
+#error-block {
     color: red;
+}
+
+header {
+    background-color: rgb(254, 186, 161);
+}
+
+body{
+    background-color: bisque;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.overview-blocks {
+    padding: 1rem;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+}
+
+.overview-block-1, .overview-block-2, .overview-block-3 {
+    border: 1px solid black;
+}
+a {
+    color: rgb(232, 138, 255);
+}
+
+button {
+    color: darkgreen;
+    background-color: azure;
+    transition-duration: 0.2s;
+}
+button:hover {
+    background-color: rgb(205, 209, 209);
+    cursor: pointer;
 }

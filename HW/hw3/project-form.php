@@ -75,7 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
-
+<?php
+    include('header.php')
+?>
 
 <body id="project-form-page">
     <?php
@@ -83,13 +85,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ?>
     <h1> Project form</h1>
 
-    <block class="error-block" id= "error-block">
+    <div class="error-block" id= "error-block">
         <?php foreach ($errors as $error): ?>
             <p>
                 <?php echo $error ?>
             </p>
         <?php endforeach ?>
-    </block>
+    </div>
 
     <form id="project-form" method="post">
         <div>

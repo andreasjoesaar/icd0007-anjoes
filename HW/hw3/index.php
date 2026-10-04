@@ -36,35 +36,39 @@ try {
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
+<?php
+    include('header.php')
+?>
+
 <body id="dashboard-page">
     <?php
     include('nav.php')
         ?>
 
-
     <p id="welcome-text">
         Welcome to the task manager
     </p>
-    <table>
-        <td id="overview-block-1">
-            <h3>Nr of projects:</h3>
+
+    <div class="overview-blocks">
+        <div class="overview-block" id="overview-block-1">
+            <a href="project-list.php"><h3>Nr of projects:</h3></a>
             <p>
                 <?php echo $project_count ?>
             </p>
-        </td>
-        <td id="overview-block-2">
-            <h3>Nr of tasks</h3>
+        </div>
+        <div class="overview-block" id="overview-block-2">
+            <a href="task-list.php"><h3>Nr of tasks:</h3></a>
             <p>
                 <?php echo $task_count ?>
             </p>
-        </td>
-        <td id="overview-block-3">
+        </div>
+        <div class ="overview-block" id="overview-block-3">
             <h3>Nr Done</h3>
             <p>
                 <?php echo $done_count ?>
             </p>
-        </td>
-    </table>
+        </div>
+    </div>
 
     <?php
     include('footer.php')

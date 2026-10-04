@@ -20,6 +20,10 @@ try {
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
+<?php
+    include('header.php')
+?>
+
 <body id="project-list-page">
     <?php
     include('nav.php');

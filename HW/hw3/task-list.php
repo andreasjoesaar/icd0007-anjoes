@@ -17,6 +17,11 @@ try {
     <title>HW 3 | Task List</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
+
+<?php
+    include('header.php')
+?>
+
 <body id="task-list-page">
     <?php
     include('nav.php');
