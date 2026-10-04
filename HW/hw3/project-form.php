@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($_POST['deadline'])) {
         $errors[] = 'Project deadline is required';
-    } else if (strtotime($_POST['deadline']) < strtotime('today')) {
+    } else if (!$edit_id && strtotime($_POST['deadline']) < strtotime('today')) {
         $errors[] = 'Project deadline cannot be earlier than today';
     }
     $deadline = $_POST['deadline'];
