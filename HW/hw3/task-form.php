@@ -197,7 +197,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div>
             Complexity
-            <input type="text" id="task-complexity" name="complexity" value="<?php echo $complexity ?>">
+             <select id="complexity" name="complexity">
+                <option value="<?php echo $complexity ?>"><?php echo $complexity ?></option>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+            </select>
         </div>
 
         <div>
