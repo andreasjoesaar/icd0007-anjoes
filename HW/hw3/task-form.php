@@ -188,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body id="task-form-page">
     <?php
-    include('header.php')
+    include('header.php');
     ?>
     <?php 
     include('nav.php');

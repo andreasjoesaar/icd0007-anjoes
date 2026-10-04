@@ -43,7 +43,7 @@ if (file_exists($tasks_path)) {
 
 <body id="task-list-page">
     <?php
-    include('header.php')
+    include('header.php');
         ?>
     <?php
     include('nav.php');

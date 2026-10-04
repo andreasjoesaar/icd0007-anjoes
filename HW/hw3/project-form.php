@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body id="project-form-page">
-    <?php include('header.php') ?>
+    <?php include('header.php'); ?>
     <?php
     include('nav.php');
     ?>

@@ -61,7 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton']) && !e
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body id="project-list-page">
-    <?php include('header.php') ?>
+    <?php 
+    include('header.php');
+    ?>
     <?php
     include('nav.php');
     ?>

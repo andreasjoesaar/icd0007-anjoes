@@ -36,13 +36,14 @@ try {
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
-<?php
-    include('header.php')
-?>
+
 
 <body id="dashboard-page">
     <?php
-    include('nav.php')
+    include('header.php');
+    ?>
+    <?php
+    include('nav.php');
         ?>
 
     <p id="welcome-text">
