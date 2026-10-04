@@ -3,6 +3,7 @@ $project_names = [];
 $projects_file = __DIR__. '/data/projects.txt';
 $title = $project = $status = $due = $description = $priority = $complexity = $owner = "";
 
+
 if (file_exists($projects_file)) {
     $projects = file($projects_file, FILE_SKIP_EMPTY_LINES | FILE_IGNORE_NEW_LINES);
     foreach($projects as $json_line) {
@@ -12,7 +13,24 @@ if (file_exists($projects_file)) {
 }
 
 }
-
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
+    $edit = true;
+    $task_idx = $_GET['id'];
+    $tasks_path = __DIR__ . '/data/tasks.txt';
+    $tasks = file($tasks_path);
+    
+    $task_to_edit = json_decode($tasks[$task_idx], true);
+    
+    $title = $task_to_edit['title'];
+    $project = $task_to_edit['project']; 
+    $description = $task_to_edit['description'];
+    $status = $task_to_edit['status'];
+    $priority = $task_to_edit['priority'];
+    $due = $task_to_edit['due'];
+    $complexity = $task_to_edit['complexity'];
+    $owner = $task_to_edit['owner']; 
+    
+}
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -108,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $owner = $_POST['owner'] ?? "";
     */
 
-    $tasks_path = '/data/tasks.txt';
+    $tasks_path = __DIR__ . '/data/tasks.txt';
     if (!$errors) {
         $task_arr = array(
             'title' => $title, 
@@ -121,29 +139,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'owner' => $owner
             );
         
-        file_put_contents(__DIR__ . $tasks_path, json_encode($task_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
+        
+        if (!isset($_GET['id'])) {
+            file_put_contents($tasks_path, json_encode($task_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL, FILE_APPEND);
+        } else  {
+            $file_to_edit_as_arr = file($tasks_path);
+            $file_to_edit_as_arr[$_GET['id']] = json_encode($task_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL;
+            $tasks_file = fopen($tasks_path, "w");
+            foreach($file_to_edit_as_arr as $line) {
+                fwrite($tasks_file, $line);
+            }
+            fclose($tasks_file);
+        }
+        
+        
         header('Location: task-list.php');
         exit();
     }
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
-    $task_idx = $_GET['id'];
-    $tasks_path = __DIR__ . '/data/tasks.txt';
-    $tasks = file($tasks_path);
-    
-    $task_to_edit = json_decode($tasks[$task_idx], true);
-    
-    $title = $task_to_edit['title'];
-    $project = $task_to_edit['project']; 
-    $description = $task_to_edit['description'];
-    $status = $task_to_edit['status'];
-    $priority = $task_to_edit['priority'];
-    $due = $task_to_edit['due'];
-    $complexity = $task_to_edit['complexity'];
-    $owner = $task_to_edit['owner']; 
-    
-}
+
 ?>
 <!doctype html>
 <html lang="et">
