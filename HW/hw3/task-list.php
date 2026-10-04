@@ -42,10 +42,8 @@ if (file_exists($tasks_path)) {
 </head>
 
 <body id="task-list-page">
-    <?php
+    <?php 
     include('header.php');
-        ?>
-    <?php
     include('nav.php');
     ?>
     <div>

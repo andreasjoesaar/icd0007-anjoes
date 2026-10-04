@@ -39,12 +39,10 @@ try {
 
 
 <body id="dashboard-page">
-    <?php
+    <?php 
     include('header.php');
-    ?>
-    <?php
     include('nav.php');
-        ?>
+    ?>
 
     <p id="welcome-text">
         Welcome to the task manager

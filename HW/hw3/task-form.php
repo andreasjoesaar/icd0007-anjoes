@@ -140,10 +140,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body id="task-form-page">
-    <?php
-    include('header.php');
-    ?>
     <?php 
+    include('header.php');
     include('nav.php');
     ?>
     <h1> Task form</h1>
@@ -187,11 +185,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <div>
             Priority
-            <select id="project-priority" name="priority">
+            <select id="task-priority" name="priority">
                 <option value="">Select Priority</option>
-                <option value="High" <?php if ($priority === 'High') echo 'selected'; ?>>High</option>
-                <option value="Medium" <?php if ($priority === 'Medium') echo 'selected'; ?>>Medium</option>
                 <option value="Low" <?php if ($priority === 'Low') echo 'selected'; ?>>Low</option>
+                <option value="Medium" <?php if ($priority === 'Medium') echo 'selected'; ?>>Medium</option>
+                <option value="High" <?php if ($priority === 'High') echo 'selected'; ?>>High</option>
             </select>
         </div>
         
