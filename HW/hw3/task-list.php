@@ -6,34 +6,34 @@ try {
     foreach ($tasks as $json_line) {
         $json_arr = json_decode($json_line, true);
         $json_arr['task-id'] = $task_idx;
-        $task_idx ++;
+        $task_idx++;
         array_push($tasks_arr, $json_arr);
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $task_to_delete = intval($_POST['deleteButton']);
-        foreach($tasks_arr as $task) {
+        foreach ($tasks_arr as $task) {
             if ($task['task-id'] === $task_to_delete) {
                 $idx_to_delete = $task['task-id'];
                 delete($idx_to_delete);
             }
         }
-        
     }
 } catch (Exception $e) {
     echo "Unable to open file" . $e->getMessage() . PHP_EOL;
 }
 
-function delete($index_to_delete) {
+function delete($index_to_delete)
+{
     try {
         $tasks_path = __DIR__ . '/data/tasks.txt';
         $tasks = file($tasks_path);
         unset($tasks[$index_to_delete]);
         file_put_contents($tasks_path, $tasks);
-        header("Refresh:0");
+        header("Location: task-list.php");
     } catch (Exception $e) {
-    echo "Unable to open file" . $e->getMessage() . PHP_EOL;
-}
+        echo "Unable to open file" . $e->getMessage() . PHP_EOL;
+    }
 }
 ?>
 <!doctype html>
@@ -46,8 +46,8 @@ function delete($index_to_delete) {
 </head>
 
 <?php
-    include('header.php')
-?>
+include('header.php')
+    ?>
 
 <body id="task-list-page">
     <?php
@@ -56,18 +56,18 @@ function delete($index_to_delete) {
     <div>
         <table id="tasks-table">
             <h3>Tasks</h3>
-            <?php if ($tasks_arr):?>
-            <tr>
-                <th>Task</th>
-                <th>Project</th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>Priority</th>
-                <th>Due</th>
-                <th>Complexity</th>
-                <th>Owner</th>
-            </tr>
-            <?php endif?>
+            <?php if ($tasks_arr): ?>
+                <tr>
+                    <th>Task</th>
+                    <th>Project</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Due</th>
+                    <th>Complexity</th>
+                    <th>Owner</th>
+                </tr>
+            <?php endif ?>
             <?php
             foreach ($tasks_arr as $task): ?>
                 <form name="deleteId" method="post">
@@ -77,7 +77,7 @@ function delete($index_to_delete) {
                             <?php echo $task['task-id'] ?>
                         </td>
                         -->
-                        <td >
+                        <td>
                             <?php echo $task['title'] ?>
                         </td>
                         <td>
@@ -105,7 +105,8 @@ function delete($index_to_delete) {
                             <button type="submit" name="editButton" value="edit">Edit</button>
                         </td>
                         <td>
-                            <button type="submit" class= "delete-button" name="deleteButton" value="<?php echo $task['task-id'] ?>">Delete</button>
+                            <button type="submit" class="delete-button" name="deleteButton"
+                                value="<?php echo $task['task-id'] ?>">Delete</button>
                         </td>
                     </tr>
                 </form>
