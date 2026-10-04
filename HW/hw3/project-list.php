@@ -1,4 +1,5 @@
 <?php
+$errors = [];
 try {
     $projects = file(__DIR__ . '/data/projects.txt');
     $projects_arr = [];
@@ -10,7 +11,7 @@ try {
         array_push($projects_arr, $json_arr);
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton'])) {
         $project_to_delete = intval($_POST['deleteButton']);
         foreach ($projects_arr as $project) {
             if ($project['project-id'] === $project_to_delete) {
@@ -23,6 +24,7 @@ try {
 } catch (Exception $e) {
     echo "Unable to open file" . $e->getMessage() . PHP_EOL;
 }
+
 function delete($index_to_delete, $title_to_delete)
 {
     try {
@@ -43,6 +45,8 @@ function delete($index_to_delete, $title_to_delete)
             unset($projects[$index_to_delete]);
             file_put_contents($projects_path, $projects);
             header("Location: project-list.php");
+        } else {
+            $GLOBALS['errors'][] = "Cannot delete project with one or more tasks";
         }
         
     } catch (Exception $e) {
@@ -68,6 +72,13 @@ include('header.php')
     <?php
     include('nav.php');
     ?>
+    <div class="error-block" id= "error-block">
+        <?php foreach ($errors as $error): ?>
+            <p>
+                <?php echo $error ?>
+            </p>
+        <?php endforeach ?>
+    </div>
     <table id="projects-table">
         <h3>Projects</h3>
         <?php if ($projects_arr): ?>

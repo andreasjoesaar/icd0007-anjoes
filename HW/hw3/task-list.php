@@ -10,7 +10,7 @@ try {
         array_push($tasks_arr, $json_arr);
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton'])) {
         $task_to_delete = intval($_POST['deleteButton']);
         foreach ($tasks_arr as $task) {
             if ($task['task-id'] === $task_to_delete) {
