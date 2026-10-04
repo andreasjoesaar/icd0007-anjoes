@@ -199,9 +199,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             Complexity
              <select id="complexity" name="complexity">
                 <option value="<?php echo $complexity ?>"><?php echo $complexity ?></option>
-                <option>Low</option>
-                <option>Medium</option>
-                <option>High</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
             </select>
         </div>
 
