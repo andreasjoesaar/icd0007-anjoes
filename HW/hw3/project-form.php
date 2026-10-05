@@ -49,10 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $deadline = trim($_POST['deadline'] ?? '');
 
-    if (!empty($_POST['priority'])) {
-        $priority = trim($_POST['priority'] ?? '');
-    } else
-        $errors[] = 'Project priority is required';
+
+    $priority = trim($_POST['priority'] ?? '');
 
     $featured = (isset($_POST['featured']) && $_POST['featured'] === 'yes') ? 'yes' : 'no';
 
@@ -183,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div>
             Status
-            <select id="project-status" name="status" value="<?php echo $status?>">
+            <select id="project-status" name="status">
                 <option value="">Select Status</option>
                 <option value="Planning" <?php if ($status === 'Planning') echo 'selected'; ?>>Planning</option>
                 <option value="Active" <?php if ($status === 'Active') echo 'selected'; ?>>Active</option>
