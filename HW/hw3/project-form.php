@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
 }
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Post validation
     $edit_id = $_POST['id'] ?? $_GET['id'] ?? null;
     if (empty($_POST['name'])) {
         $errors[] = 'Project title is required';
@@ -58,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $projects_path_full = __DIR__ . '/data/projects.txt';
     
+    // Projekti info massiivi kujul koos id-ga
     if (empty($errors)) {
         $project_arr = array(
             'id' => ($edit_id !== '') ? $edit_id : uniqid('proj_'),
@@ -69,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'priority' => $priority
         );
 
+        // Projekti muutmine
         $updated = false;
         if ($edit_id && file_exists($projects_path_full)) {
             $new_file_contents = [];
@@ -85,7 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $is_match = false;
                 if (isset($decoded['id']) && (string)$decoded['id'] === (string)$edit_id) {
                     $is_match = true;
-                } elseif ((string)$index === (string)$edit_id) {
+
+                } elseif ((string)$index === (string)$edit_id) { // Juhuks kui on edit id arvuline
                     $is_match = true;
                 }
 
@@ -101,6 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
             
+
             if (!$updated && !empty($file_to_edit_as_arr)) {
                 $first_decoded = json_decode(trim($file_to_edit_as_arr[0]), true);
                 if (isset($first_decoded['id'])) {
@@ -178,7 +183,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div>
             Status
-            <select id="project-status" name="status">
+            <select id="project-status" name="status" value="<?php echo $status?>">
                 <option value="">Select Status</option>
                 <option value="Planning" <?php if ($status === 'Planning') echo 'selected'; ?>>Planning</option>
                 <option value="Active" <?php if ($status === 'Active') echo 'selected'; ?>>Active</option>
