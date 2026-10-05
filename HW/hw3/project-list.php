@@ -66,13 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteButton']) && !e
     include('header.php');
     include('nav.php');
     ?>
-    <div class="error-block" id="error-block">
-        <?php foreach ($errors as $error): ?>
-            <p>
-                <?php echo $error ?>
-            </p>
-        <?php endforeach ?>
-    </div>
     <table id="projects-table">
         <h3>Projects</h3>
         <?php if ($projects_arr): ?>

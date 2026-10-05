@@ -1,2 +1,3 @@
 {"id":"proj_6ac2c88a4ddd2","name":"Korrektne pealkiri","description":"asdsadasd","status":"Active","deadline":"2028-02-22","featured":"no","priority":"Medium"}
 {"id":"proj_6ac32ca220ef8","name":"sasdsa","description":"dasdasdasd","status":"Done","deadline":"2029-03-21","featured":"yes","priority":"Medium"}
+{"id":"proj_6ac3859da1185","name":"asdasd","description":"asdasdasd","status":"Active","deadline":"2029-02-22","featured":"no","priority":"Medium"}
