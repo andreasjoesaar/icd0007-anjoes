@@ -82,7 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 $decoded = json_decode($clean_line, true);
                 
-                // Match by exact ID OR fallback to matching by array index
                 $is_match = false;
                 if (isset($decoded['id']) && (string)$decoded['id'] === (string)$edit_id) {
                     $is_match = true;
@@ -93,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($is_match) {
                     $old_project_name = $decoded['name'] ?? ''; 
                     if (isset($decoded['id'])) {
-                        $project_arr['id'] = $decoded['id']; // Preserve original test ID
+                        $project_arr['id'] = $decoded['id']; 
                     }
                     $new_file_contents[] = json_encode($project_arr, JSON_UNESCAPED_UNICODE) . PHP_EOL;
                     $updated = true;
@@ -102,7 +101,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
             
-            // Absolute Fallback: if ID/index didn't match, update the first record so data never vanishes
             if (!$updated && !empty($file_to_edit_as_arr)) {
                 $first_decoded = json_decode(trim($file_to_edit_as_arr[0]), true);
                 if (isset($first_decoded['id'])) {
