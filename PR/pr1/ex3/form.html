@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <title>Kursusele registreerimine</title>
+</head>
+<body>
+
+<form method="POST" action="/register">
+
+    <p>
+        <label for="nimi">Nimi</label><br>
+        <input type="text" id="nimi" name="nimi">
+    </p>
+
+    <p>
+        <label for="email">E-post</label><br>
+        <input type="email" id="email" name="email">
+    </p>
+
+    <p>
+        <label for="telefon">Telefon</label><br>
+        <input type="tel" id="telefon" name="telefon">
+    </p>
+
+    <p>
+        <label for="algus">Soovitud alguskuupäev</label><br>
+        <input type="date" id="algus" name="algus">
+    </p>
+
+    <p>
+        Tase:<br>
+        <input type="radio" name="tase" value="algaja"> Algaja<br>
+        <input type="radio" name="tase" value="keskmine"> Keskmine<br>
+        <input type="radio" name="tase" value="edasijoudnu"> Edasijõudnu<br>
+    </p>
+
+    <p>
+        Eelistatud päevad:<br>
+        <input type="checkbox" name="paevad" value="esmaspaev"> Esmaspäev<br>
+        <input type="checkbox" name="paevad" value="kolmapaev"> Kolmapäev<br>
+        <input type="checkbox" name="paevad" value="reede"> Reede<br>
+    </p>
+
+    <p>
+        <label for="kestus">Kursuse kestus</label><br>
+        <select name="kestus" id="kestus">
+            <option value="1" name="kestus">1 semester</option>
+            <option value="2" name="kestus">2 semestrit</option>
+        </select>
+    </p>
+
+    <p>
+        <label for="lisainfo">Lisainfo</label><br>
+        <textarea type="text" id="lisainfo" name="lisainfo"></textarea>
+    </p>
+
+    <p>
+        <input type="submit" value="Registreeru">
+    </p>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+span.e, .e, aside>b {
+    color: crimson;
+    font-style: italic;
+}
+
+div>b.e, p>b {
+    color: navy;
+}
+
+p.f {
+    color: olive;
+    font-style: normal;
+}

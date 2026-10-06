@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<span class="e">1</span>                      <!-- karmiinpunane, italic -->
+
+<p class="f">2</p>                            <!-- oliivroheline, normal -->
+
+<main><span class="e">3</span></main>         <!-- karmiinpunane, italic -->
+
+<p id="e" class="f"><b>4</b></p>              <!-- tumesinine, normal -->
+
+<div><b class="e">5</b></div>                 <!-- tumesinine, italic -->
+
+<aside>
+    <span><b>6</b></span>                     <!-- must (värv pole määratud), normal -->
+    <b>7</b>                                  <!-- karmiinpunane, italic -->
+</aside>
+
+<br><br>
+
+<script>
+
+    let correct = 0;
+
+    correct += style('1', 'crimson', 'italic');
+    correct += style('2', 'olive',   'normal');
+    correct += style('3', 'crimson', 'italic');
+    correct += style('4', 'navy',    'normal');
+    correct += style('5', 'navy',    'italic');
+    correct += style('6', 'black',   'normal');
+    correct += style('7', 'crimson', 'italic');
+
+    const correctToPoints = [0, 0, 0, 1, 3, 5, 7, 8];
+
+    const message = `${correct} correct, ${correctToPoints[correct]} of 8 points`;
+
+    document.write(message);
+
+    function style(number, color, fontStyle) {
+        const el = findElement(document.body, number);
+        if (!el) return 0;
+        const computed = getComputedStyle(el);
+        const actualColor = rgbToName(computed.color);
+        const actualFont  = computed.fontStyle;
+        return (actualColor === color && actualFont === fontStyle) ? 1 : 0;
+    }
+
+    function findElement(node, num) {
+        if (node.nodeType === 3 && node.nodeValue.trim() === num) {
+            return node.parentNode;
+        }
+        for (const child of node.childNodes) {
+            const found = findElement(child, num);
+            if (found) return found;
+        }
+        return null;
+    }
+
+    // Maps a computed rgb(...) string to a CSS color keyword.
+    // Exact integer RGB values for the four colors used in this exercise:
+    //   crimson → rgb(220,  20,  60)
+    //   olive   → rgb(128, 128,   0)
+    //   navy    → rgb(  0,   0, 128)
+    //   black   → rgb(  0,   0,   0)
+    function rgbToName(rgbString) {
+        const parts = rgbString.match(/\d+/g);
+        if (!parts || parts.length < 3) return 'unknown';
+        const [r, g, b] = parts.map(Number);
+        if (r === 220 && g ===  20 && b ===  60) return 'crimson';
+        if (r === 128 && g === 128 && b ===   0) return 'olive';
+        if (r ===   0 && g ===   0 && b === 128) return 'navy';
+        if (r ===   0 && g ===   0 && b ===   0) return 'black';
+        return `rgb(${r},${g},${b})`;
+    }
+
+</script>
+
+</body>
+</html>
