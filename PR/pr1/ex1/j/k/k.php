@@ -1,3 +1,3 @@
 <?php
 
-require_once '../../pic.html';
+require_once '../pic.html';

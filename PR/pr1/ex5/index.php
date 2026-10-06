@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ];
 
     if (empty($errors)) {
-        header('Location: /ex5/success.php');
+        header('Location: success.php');
         exit;
     }
 }

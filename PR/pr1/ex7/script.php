@@ -21,12 +21,12 @@ if ($arv2 === null){
 if (!$error) {
     switch ($tehe) {
     case "liida":  
-        $tulemus = $arv1 + $arv2;
+        $tulemus = round(($arv1 + $arv2),2);
         $operaator = "+";
         break;
         
     case "lahuta" :
-        $tulemus = $arv1 - $arv2;
+        $tulemus = round(($arv1 - $arv2),2);
         $operaator = "-";
         break;
     case "korruta" : 
