@@ -20,7 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $veebileht = trim($_POST['veebileht']) ?? "";
-    if (!filter_var($veebileht, FILTER_VALIDATE_URL)){
+    $veebileht = filter_var($veebileht, FILTER_SANITIZE_URL);
+    if ($veebileht && filter_var($veebileht, FILTER_VALIDATE_URL) === false){
         $errors['veebileht'] = "Vale veebilehe formaat";
     }
 

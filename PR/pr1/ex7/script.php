@@ -21,21 +21,21 @@ if ($arv2 === null){
 if (!$error) {
     switch ($tehe) {
     case "liida":  
-        $tulemus = round(($arv1 + $arv2),2);
+        $tulemus = number_format(round(($arv1 + $arv2),2), 2) ;
         $operaator = "+";
         break;
         
     case "lahuta" :
-        $tulemus = round(($arv1 - $arv2),2);
+        $tulemus = number_format(round(($arv1 - $arv2),2),2) ;
         $operaator = "-";
         break;
     case "korruta" : 
-        $tulemus = round(($arv1 * $arv2),2);
+        $tulemus = number_format(round(($arv1 * $arv2),2), 2) ;
         $operaator = "*";
         break;
     case "jaga" :
         if (intval($arv2) !== 0) {
-            $tulemus = round(($arv1 / $arv2), 2);
+            $tulemus = number_format(round(($arv1 / $arv2), 2),2) ;
             $operaator = "/";
         } else {
             $error = "viga! Nulliga jagada ei saa!";
