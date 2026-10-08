@@ -1,13 +1,13 @@
-/* kood tuleb siia */ {
+div.c,footer>b,p>b.c {
     color: orange;
     font-style: italic;
 }
 
-/* kood tuleb siia */ {
+div.d, p>b.c {
     color: purple;
 }
 
-/* kood tuleb siia */ {
+p.d {
     color: teal;
     font-style: normal;
 }
