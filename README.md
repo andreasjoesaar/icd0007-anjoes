@@ -1,7 +1,3 @@
 # icd0007-2026f
 
-
-
-
-
-askdjsakjd
+Veebitehnoloogiad ICD0007
